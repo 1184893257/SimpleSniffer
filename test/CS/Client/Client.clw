@@ -2,12 +2,12 @@
 
 [General Info]
 Version=1
-LastClass=CClientDlg
-LastTemplate=CDialog
+LastClass=CWCSock
+LastTemplate=CSocket
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "Client.h"
 
-ClassCount=4
+ClassCount=5
 Class1=CClientApp
 Class2=CClientDlg
 Class3=CAboutDlg
@@ -15,6 +15,7 @@ Class3=CAboutDlg
 ResourceCount=3
 Resource1=IDD_ABOUTBOX
 Resource2=IDR_MAINFRAME
+Class5=CWCSock
 Resource3=IDD_CLIENT_DIALOG
 
 [CLS:CClientApp]
@@ -62,4 +63,11 @@ Control11=IDC_STATIC,static,1342308352
 Control12=IDC_STATIC,static,1342308352
 Control13=IDC_LIST1,listbox,1352728843
 Control14=IDC_EDIT4,edit,1350635652
+
+[CLS:CWCSock]
+Type=0
+HeaderFile=WCSock.h
+ImplementationFile=WCSock.cpp
+BaseClass=CSocket
+Filter=N
 
