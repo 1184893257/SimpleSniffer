@@ -1,4 +1,4 @@
-// Microsoft Visual C++ generated resource script.
+//Microsoft Developer Studio generated resource script.
 //
 #include "resource.h"
 
@@ -11,6 +11,15 @@
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -35,19 +44,18 @@ BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
     "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
-	"\r\n"
-	"#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
-	"#ifdef _WIN32\r\n"
-	"LANGUAGE 4, 2\r\n"
-	"#pragma code_page(936)\r\n"
-	"#endif //_WIN32\r\n"
-	"#include ""res\\Client.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
-	"#include ""l.chs\\afxres.rc""  	// Standard components\r\n"
-	"#endif\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\Client.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
     "\0"
 END
 
-/////////////////////////////////////////////////////////////////////////////
 #endif    // APSTUDIO_INVOKED
 
 
@@ -60,12 +68,6 @@ END
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Client.ico"
 
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
-#ifdef _WIN32
-LANGUAGE 4, 2
-#pragma code_page(936)
-#endif //_WIN32
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
@@ -77,31 +79,29 @@ CAPTION "关于 Client"
 FONT 9, "宋体"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "Client 1.0 版",IDC_STATIC,40,10,119,8,
-                    SS_NOPREFIX
+    LTEXT           "Client 1.0 版",IDC_STATIC,40,10,119,8,SS_NOPREFIX
     LTEXT           "版权所有 (C) 2012",IDC_STATIC,40,25,119,8
-    DEFPUSHBUTTON   "确定",IDOK,178,7, 50,14,WS_GROUP
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
 END
 
-IDD_CLIENT_DIALOG DIALOGEX  0, 0, 320, 200 
+IDD_CLIENT_DIALOG DIALOGEX 0, 0, 320, 200
 STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "Client"
 FONT 9, "宋体"
 BEGIN
-    DEFPUSHBUTTON   "确定",IDOK,260,7,50,14
-    PUSHBUTTON      "取消",IDCANCEL,260,23,50,14
-	LTEXT           "TODO: 在这里设置对话控制。",IDC_STATIC,50,90,200,8
 END
 
+
+#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
 //
 
-VS_VERSION_INFO     VERSIONINFO
-  FILEVERSION       1,0,0,1
-  PRODUCTVERSION    1,0,0,1
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -112,26 +112,29 @@ VS_VERSION_INFO     VERSIONINFO
  FILETYPE 0x1L
  FILESUBTYPE 0x0L
 BEGIN
-	BLOCK "StringFileInfo"
-	BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
         BLOCK "080404B0"
-		BEGIN 
-			VALUE "CompanyName",     "\0"
-			VALUE "FileDescription", "Client Microsoft 基础类应用程序\0"
-			VALUE "FileVersion",     "1, 0, 0, 1\0"
-			VALUE "InternalName",    "Client\0"
-			VALUE "LegalCopyright",  "版权所有 (C) 2012\0"
-			VALUE "LegalTrademarks", "\0"
-			VALUE "OriginalFilename","Client.EXE\0"
-			VALUE "ProductName",     "Client 应用程序\0"
-			VALUE "ProductVersion",  "1, 0, 0, 1\0"
-		END
-	END
-	BLOCK "VarFileInfo" 
-	BEGIN 
-		VALUE "Translation", 0x0804, 1200
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Client Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Client\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2012\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Client.EXE\0"
+            VALUE "ProductName", "Client 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
     END
 END
+
+#endif    // !_MAC
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -148,16 +151,16 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 48
     END
+
     IDD_CLIENT_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 313
         TOPMARGIN, 7
-        BOTTOMMARGIN,193 
+        BOTTOMMARGIN, 193
     END
 END
 #endif    // APSTUDIO_INVOKED
-
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -168,13 +171,13 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_ABOUTBOX            "关于 Client(&A)..."
+    IDP_SOCKETS_INIT_FAILED "Windows 通信端口初始化失败。"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-	IDP_SOCKETS_INIT_FAILED	"Windows 通信端口初始化失败。"
-END
-#endif
+#endif    // Chinese (中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
 
 #ifndef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -191,8 +194,8 @@ END
 LANGUAGE 4, 2
 #pragma code_page(936)
 #endif //_WIN32
-#include "res\\Client.rc2"  // non-Microsoft Visual C++ edited resources
-#include "l.chs\\afxres.rc"  	// Standard components
+#include "res\Client.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
