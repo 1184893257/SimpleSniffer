@@ -47,5 +47,6 @@ Control4=IDOK,button,1342373889
 [DLG:IDD_CLIENT_DIALOG]
 Type=1
 Class=CClientDlg
-ControlCount=0
+ControlCount=1
+Control1=IDC_STATIC,button,1342177287
 
