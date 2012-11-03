@@ -7,7 +7,13 @@
 // WCSock.h : header file
 //
 
+typedef struct
+{
+	char name[32];
+	char data[480];
+}_DATA;
 
+#define RE_RECEIVED WM_USER + 1
 
 /////////////////////////////////////////////////////////////////////////////
 // CWCSock command target
@@ -26,6 +32,8 @@ public:
 public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CWCSock)
+	public:
+	virtual void OnReceive(int nErrorCode);
 	//}}AFX_VIRTUAL
 
 	// Generated message map functions
@@ -35,6 +43,7 @@ public:
 
 // Implementation
 protected:
+	_DATA m_Dat;
 };
 
 /////////////////////////////////////////////////////////////////////////////

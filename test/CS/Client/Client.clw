@@ -7,7 +7,7 @@ LastTemplate=CSocket
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "Client.h"
 
-ClassCount=5
+ClassCount=4
 Class1=CClientApp
 Class2=CClientDlg
 Class3=CAboutDlg
@@ -15,7 +15,7 @@ Class3=CAboutDlg
 ResourceCount=3
 Resource1=IDD_ABOUTBOX
 Resource2=IDR_MAINFRAME
-Class5=CWCSock
+Class4=CWCSock
 Resource3=IDD_CLIENT_DIALOG
 
 [CLS:CClientApp]
@@ -70,4 +70,6 @@ HeaderFile=WCSock.h
 ImplementationFile=WCSock.cpp
 BaseClass=CSocket
 Filter=N
+VirtualFilter=uq
+LastObject=CWCSock
 

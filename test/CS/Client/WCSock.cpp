@@ -33,3 +33,11 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CWCSock member functions
+
+void CWCSock::OnReceive(int nErrorCode) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	if(this->Receive(&this->m_Dat, sizeof(_DATA))==sizeof(_DATA))
+		::PostMessage(::AfxGetApp()->m_pMainWnd->m_hWnd, RE_RECEIVED, (WPARAM)(&m_Dat), 0);
+	CSocket::OnReceive(nErrorCode);
+}
