@@ -64,7 +64,7 @@ CClientDlg::CClientDlg(CWnd* pParent /*=NULL*/)
 {
 	//{{AFX_DATA_INIT(CClientDlg)
 	m_client_name = _T("localhost");
-	m_send_info = _T(" ");
+	m_send_info = _T("");
 	m_server_name = _T("localhost");
 	m_nPort = 800;
 	//}}AFX_DATA_INIT

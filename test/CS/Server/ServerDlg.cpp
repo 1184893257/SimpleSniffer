@@ -66,7 +66,7 @@ CServerDlg::CServerDlg(CWnd* pParent /*=NULL*/)
 	this->m_listenSocket=NULL;
 	//{{AFX_DATA_INIT(CServerDlg)
 	m_Port = 800;
-	m_Name = _T("");
+	m_Name = _T("lqy");
 	m_SendInfo = _T("");
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
