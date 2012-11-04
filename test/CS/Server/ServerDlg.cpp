@@ -62,6 +62,8 @@ END_MESSAGE_MAP()
 CServerDlg::CServerDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CServerDlg::IDD, pParent)
 {
+	this->m_client=NULL;
+	this->m_listenSocket=NULL;
 	//{{AFX_DATA_INIT(CServerDlg)
 	m_Port = 800;
 	m_Name = _T("");

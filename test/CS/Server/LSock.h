@@ -7,7 +7,13 @@
 // LSock.h : header file
 //
 
+typedef struct
+{
+	char name[32];
+	char data[480];
+}_DATA;
 
+class CServerDlg;
 
 /////////////////////////////////////////////////////////////////////////////
 // CLSock command target
@@ -19,7 +25,7 @@ public:
 
 // Operations
 public:
-	CLSock();
+	CLSock(CServerDlg *p);
 	virtual ~CLSock();
 
 // Overrides
@@ -35,6 +41,7 @@ public:
 
 // Implementation
 protected:
+	CServerDlg *m_p;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -51,7 +58,7 @@ public:
 
 // Operations
 public:
-	CRWSock();
+	CRWSock(CServerDlg *p);
 	virtual ~CRWSock();
 
 // Overrides
@@ -67,6 +74,7 @@ public:
 
 // Implementation
 protected:
+	CServerDlg *m_p;
 };
 
 /////////////////////////////////////////////////////////////////////////////

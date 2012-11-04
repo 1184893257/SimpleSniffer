@@ -14,8 +14,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CLSock
 
-CLSock::CLSock()
+CLSock::CLSock(CServerDlg *p)
 {
+	this->m_p=p;
 }
 
 CLSock::~CLSock()
@@ -36,8 +37,9 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CRWSock
 
-CRWSock::CRWSock()
+CRWSock::CRWSock(CServerDlg *p)
 {
+	this->m_p=p;
 }
 
 CRWSock::~CRWSock()

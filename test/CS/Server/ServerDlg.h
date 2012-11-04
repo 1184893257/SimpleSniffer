@@ -8,6 +8,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include "LSock.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // CServerDlg dialog
 
@@ -35,6 +37,8 @@ public:
 // Implementation
 protected:
 	HICON m_hIcon;
+	CRWSock *m_client;
+	CLSock *m_listenSocket;
 
 	// Generated message map functions
 	//{{AFX_MSG(CServerDlg)
