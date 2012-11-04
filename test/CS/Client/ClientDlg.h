@@ -8,6 +8,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include "WCSock.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // CClientDlg dialog
 
@@ -16,6 +18,7 @@ class CClientDlg : public CDialog
 // Construction
 public:
 	CClientDlg(CWnd* pParent = NULL);	// standard constructor
+	LRESULT OnmyReceive(WPARAM wparam, LPARAM lParam);
 
 // Dialog Data
 	//{{AFX_DATA(CClientDlg)
@@ -36,6 +39,7 @@ public:
 // Implementation
 protected:
 	HICON m_hIcon;
+	CWCSock sockClient;
 
 	// Generated message map functions
 	//{{AFX_MSG(CClientDlg)
@@ -43,6 +47,9 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void OnConnect();
+	afx_msg void OnClose();
+	afx_msg void OnSend();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

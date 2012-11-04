@@ -15,8 +15,11 @@
 #define IDC_EDIT3                       1005
 #define IDC_CLIENT_NAME                 1005
 #define IDC_BUTTON1                     1006
+#define IDC_CLOSE                       1006
 #define IDC_BUTTON2                     1007
+#define IDC_CONNECT                     1007
 #define IDC_BUTTON3                     1008
+#define IDC_SEND                        1008
 #define IDC_BUTTON4                     1009
 #define IDC_LIST1                       1010
 #define IDC_RECEIVED_INFO               1010

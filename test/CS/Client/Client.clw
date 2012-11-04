@@ -31,6 +31,7 @@ ImplementationFile=ClientDlg.cpp
 Filter=D
 BaseClass=CDialog
 VirtualFilter=dWC
+LastObject=IDC_CONNECT
 
 [CLS:CAboutDlg]
 Type=0
@@ -58,9 +59,9 @@ Control4=IDC_STATIC,static,1342308352
 Control5=IDC_SERVER_NAME,edit,1350631552
 Control6=IDC_SERVER_PORT,edit,1350631552
 Control7=IDC_CLIENT_NAME,edit,1350631552
-Control8=IDC_BUTTON1,button,1342242816
-Control9=IDC_BUTTON2,button,1342242816
-Control10=IDC_BUTTON3,button,1342242816
+Control8=IDC_CLOSE,button,1342242816
+Control9=IDC_CONNECT,button,1342242816
+Control10=IDC_SEND,button,1342242816
 Control11=IDC_STATIC,static,1342308352
 Control12=IDC_STATIC,static,1342308352
 Control13=IDC_RECEIVED_INFO,listbox,1352728843

@@ -89,6 +89,10 @@ BEGIN_MESSAGE_MAP(CClientDlg, CDialog)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_CONNECT, OnConnect)
+	ON_BN_CLICKED(IDC_CLOSE, OnClose)
+	ON_BN_CLICKED(IDC_SEND, OnSend)
+	ON_MESSAGE(RE_RECEIVED, OnmyReceive)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -123,6 +127,12 @@ BOOL CClientDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 	
 	// TODO: Add extra initialization here
+	this->GetDlgItem(IDC_CONNECT)->EnableWindow(true);
+	this->GetDlgItem(IDC_SEND)->EnableWindow(false);
+	this->GetDlgItem(IDC_CLOSE)->EnableWindow(false);
+	this->GetDlgItem(IDC_SERVER_PORT)->EnableWindow(true);
+	this->GetDlgItem(IDC_CLIENT_NAME)->EnableWindow(true);
+	this->GetDlgItem(IDC_SERVER_NAME)->EnableWindow(true);
 	
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -174,4 +184,66 @@ void CClientDlg::OnPaint()
 HCURSOR CClientDlg::OnQueryDragIcon()
 {
 	return (HCURSOR) m_hIcon;
+}
+
+void CClientDlg::OnConnect() 
+{
+	// TODO: Add your control notification handler code here
+	UpdateData(true);
+	if(!(this->sockClient).Create())
+	{
+		::AfxMessageBox("生产 Socket 失败");
+		::PostQuitMessage(0);
+	}
+	if(!(this->sockClient).Connect(this->m_server_name,this->m_nPort))
+	{
+		MessageBox("连接失败");
+		return;
+	}
+	this->GetDlgItem(IDC_CONNECT)->EnableWindow(false);
+	this->GetDlgItem(IDC_SEND)->EnableWindow(true);
+	this->GetDlgItem(IDC_CLOSE)->EnableWindow(true);
+	this->GetDlgItem(IDC_SERVER_PORT)->EnableWindow(false);
+	this->GetDlgItem(IDC_CLIENT_NAME)->EnableWindow(false);
+	this->GetDlgItem(IDC_SERVER_NAME)->EnableWindow(false);
+}
+
+void CClientDlg::OnClose() 
+{
+	// TODO: Add your control notification handler code here
+	(this->sockClient).Close();
+	this->GetDlgItem(IDC_CONNECT)->EnableWindow(true);
+	this->GetDlgItem(IDC_SEND)->EnableWindow(false);
+	this->GetDlgItem(IDC_CLOSE)->EnableWindow(false);
+	this->GetDlgItem(IDC_SERVER_PORT)->EnableWindow(true);
+	this->GetDlgItem(IDC_CLIENT_NAME)->EnableWindow(true);
+	this->GetDlgItem(IDC_SERVER_NAME)->EnableWindow(true);
+}
+
+void CClientDlg::OnSend() 
+{
+	// TODO: Add your control notification handler code here
+	this->UpdateData(true);
+
+	_DATA data;
+	strcpy(data.name,this->m_client_name);
+	strcpy(data.data,this->m_send_info);
+	int iSent=this->sockClient.Send(&data,sizeof(_DATA));
+	if(iSent!=SOCKET_ERROR)
+	{
+		this->m_ctlRecvd.AddString(m_send_info);
+		this->UpdateData(false);
+	}
+}
+
+LRESULT CClientDlg::OnmyReceive(WPARAM wparam, LPARAM lParam)
+{
+	_DATA *data=(_DATA*)wparam;
+	CString str;
+	str += data->name;
+	str += ":";
+	str += data->data;
+	this->m_ctlRecvd.AddString(str);
+	this->UpdateData(false);
+	return 1;
 }
