@@ -2,12 +2,12 @@
 
 [General Info]
 Version=1
-LastClass=CServerDlg
-LastTemplate=CDialog
+LastClass=CRWSock
+LastTemplate=CSocket
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "Server.h"
 
-ClassCount=4
+ClassCount=6
 Class1=CServerApp
 Class2=CServerDlg
 Class3=CAboutDlg
@@ -15,6 +15,8 @@ Class3=CAboutDlg
 ResourceCount=3
 Resource1=IDD_ABOUTBOX
 Resource2=IDR_MAINFRAME
+Class5=CLSock
+Class6=CRWSock
 Resource3=IDD_SERVER_DIALOG
 
 [CLS:CServerApp]
@@ -58,4 +60,18 @@ Control7=IDC_HISTORY,listbox,1352728843
 Control8=IDC_SEND_INFO,edit,1350635652
 Control9=IDC_EDIT2,edit,1350631552
 Control10=IDC_EDIT3,edit,1350631552
+
+[CLS:CLSock]
+Type=0
+HeaderFile=LSock.h
+ImplementationFile=LSock.cpp
+BaseClass=CSocket
+Filter=N
+
+[CLS:CRWSock]
+Type=0
+HeaderFile=LSock.h
+ImplementationFile=LSock.cpp
+BaseClass=CSocket
+Filter=N
 
