@@ -31,7 +31,7 @@ Type=0
 HeaderFile=ServerDlg.h
 ImplementationFile=ServerDlg.cpp
 Filter=D
-LastObject=IDC_NAME
+LastObject=IDC_SEND
 BaseClass=CDialog
 VirtualFilter=dWC
 
@@ -72,6 +72,8 @@ HeaderFile=LSock.h
 ImplementationFile=LSock.cpp
 BaseClass=CSocket
 Filter=N
+VirtualFilter=uq
+LastObject=CLSock
 
 [CLS:CRWSock]
 Type=0
@@ -80,4 +82,5 @@ ImplementationFile=LSock.cpp
 BaseClass=CSocket
 Filter=N
 LastObject=CRWSock
+VirtualFilter=uq
 

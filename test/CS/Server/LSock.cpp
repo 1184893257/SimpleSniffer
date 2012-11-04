@@ -57,3 +57,19 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CRWSock member functions
+
+#include "ServerDlg.h"
+
+void CRWSock::OnReceive(int nErrorCode) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	this->m_p->ReadMessage(this);
+	CSocket::OnReceive(nErrorCode);
+}
+
+void CLSock::OnAccept(int nErrorCode) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	this->m_p->AcceptClient();
+	CSocket::OnAccept(nErrorCode);
+}

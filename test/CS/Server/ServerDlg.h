@@ -18,6 +18,8 @@ class CServerDlg : public CDialog
 // Construction
 public:
 	CServerDlg(CWnd* pParent = NULL);	// standard constructor
+	void AcceptClient();
+	void ReadMessage(CRWSock *sock);
 
 // Dialog Data
 	//{{AFX_DATA(CServerDlg)
@@ -46,6 +48,9 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void OnClose();
+	afx_msg void OnStart();
+	afx_msg void OnSend();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

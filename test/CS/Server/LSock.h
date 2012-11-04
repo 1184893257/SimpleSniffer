@@ -32,6 +32,8 @@ public:
 public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CLSock)
+	public:
+	virtual void OnAccept(int nErrorCode);
 	//}}AFX_VIRTUAL
 
 	// Generated message map functions
@@ -65,6 +67,8 @@ public:
 public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CRWSock)
+	public:
+	virtual void OnReceive(int nErrorCode);
 	//}}AFX_VIRTUAL
 
 	// Generated message map functions

@@ -89,6 +89,9 @@ BEGIN_MESSAGE_MAP(CServerDlg, CDialog)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_CLOSE, OnClose)
+	ON_BN_CLICKED(IDC_START, OnStart)
+	ON_BN_CLICKED(IDC_SEND, OnSend)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -123,7 +126,11 @@ BOOL CServerDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 	
 	// TODO: Add extra initialization here
-	
+	this->GetDlgItem(IDC_START)->EnableWindow(true);
+	this->GetDlgItem(IDC_CLOSE)->EnableWindow(false);
+	this->GetDlgItem(IDC_PORT)->EnableWindow(true);
+	this->GetDlgItem(IDC_NAME)->EnableWindow(true);
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -174,4 +181,90 @@ void CServerDlg::OnPaint()
 HCURSOR CServerDlg::OnQueryDragIcon()
 {
 	return (HCURSOR) m_hIcon;
+}
+
+void CServerDlg::AcceptClient()
+{
+	if(this->m_client)
+		delete this->m_client;
+
+	this->m_client = new CRWSock(this);
+	if(!this->m_listenSocket->Accept(*this->m_client))
+	{
+		::AfxMessageBox("请求连接失败");
+		delete this->m_client;
+		this->m_client=NULL;
+	}
+}
+
+void CServerDlg::ReadMessage(CRWSock *sock)
+{
+	_DATA data[1];
+	int len=sock->Receive(data,sizeof(_DATA));
+	if(len == sizeof(_DATA))
+	{
+		CString str;
+		str += data->name;
+		str += ":";
+		str += data->data;
+		this->m_History.AddString(str);
+		this->UpdateData(false);
+	}
+}
+
+void CServerDlg::OnClose() 
+{
+	// TODO: Add your control notification handler code here
+	if(this->m_client)
+		delete this->m_client;
+	this->m_listenSocket->Close();
+	delete this->m_listenSocket;
+	
+	this->GetDlgItem(IDC_START)->EnableWindow(true);
+	this->GetDlgItem(IDC_CLOSE)->EnableWindow(false);
+	this->GetDlgItem(IDC_PORT)->EnableWindow(true);
+	this->GetDlgItem(IDC_NAME)->EnableWindow(true);
+}
+
+void CServerDlg::OnStart() 
+{
+	// TODO: Add your control notification handler code here
+	this->UpdateData(true);
+	this->m_listenSocket=new CLSock(this);
+	if(!this->m_listenSocket->Create(this->m_Port))
+	{
+		::AfxMessageBox("创建 Socket 失败!");
+		delete this->m_listenSocket;
+		this->m_listenSocket=NULL;
+		return;
+	}
+
+	if(!this->m_listenSocket->Listen())
+	{
+		::AfxMessageBox("端口设置失败!");
+		delete this->m_listenSocket;
+		this->m_listenSocket=NULL;
+		return;
+	}
+
+	this->GetDlgItem(IDC_START)->EnableWindow(false);
+	this->GetDlgItem(IDC_CLOSE)->EnableWindow(true);
+	this->GetDlgItem(IDC_PORT)->EnableWindow(false);
+	this->GetDlgItem(IDC_NAME)->EnableWindow(false);
+}
+
+void CServerDlg::OnSend() 
+{
+	// TODO: Add your control notification handler code here
+	this->UpdateData(true);
+
+	_DATA data;
+	strcpy(data.name,this->m_Name);
+	strcpy(data.data,this->m_SendInfo);
+	int iSent=this->m_client->Send(&data,sizeof(_DATA));
+	if(iSent!=SOCKET_ERROR)
+	{
+		this->m_History.AddString(this->m_SendInfo);
+		this->UpdateData(false);
+	}
 }

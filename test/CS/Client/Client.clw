@@ -31,7 +31,7 @@ ImplementationFile=ClientDlg.cpp
 Filter=D
 BaseClass=CDialog
 VirtualFilter=dWC
-LastObject=IDC_CONNECT
+LastObject=IDC_SEND
 
 [CLS:CAboutDlg]
 Type=0
