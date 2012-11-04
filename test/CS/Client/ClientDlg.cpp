@@ -63,7 +63,10 @@ CClientDlg::CClientDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CClientDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CClientDlg)
-		// NOTE: the ClassWizard will add member initialization here
+	m_client_name = _T("localhost");
+	m_send_info = _T(" ");
+	m_server_name = _T("localhost");
+	m_nPort = 800;
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -73,7 +76,11 @@ void CClientDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CClientDlg)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
+	DDX_Control(pDX, IDC_RECEIVED_INFO, m_ctlRecvd);
+	DDX_Text(pDX, IDC_CLIENT_NAME, m_client_name);
+	DDX_Text(pDX, IDC_SEND_INFO, m_send_info);
+	DDX_Text(pDX, IDC_SERVER_NAME, m_server_name);
+	DDX_Text(pDX, IDC_SERVER_PORT, m_nPort);
 	//}}AFX_DATA_MAP
 }
 

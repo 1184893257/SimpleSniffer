@@ -9,14 +9,19 @@
 #define IDP_SOCKETS_INIT_FAILED         103
 #define IDR_MAINFRAME                   128
 #define IDC_EDIT1                       1003
+#define IDC_SERVER_NAME                 1003
 #define IDC_EDIT2                       1004
+#define IDC_SERVER_PORT                 1004
 #define IDC_EDIT3                       1005
+#define IDC_CLIENT_NAME                 1005
 #define IDC_BUTTON1                     1006
 #define IDC_BUTTON2                     1007
 #define IDC_BUTTON3                     1008
 #define IDC_BUTTON4                     1009
 #define IDC_LIST1                       1010
+#define IDC_RECEIVED_INFO               1010
 #define IDC_EDIT4                       1011
+#define IDC_SEND_INFO                   1011
 
 // Next default values for new objects
 // 

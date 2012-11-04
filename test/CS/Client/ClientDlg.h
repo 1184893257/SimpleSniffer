@@ -20,7 +20,11 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CClientDlg)
 	enum { IDD = IDD_CLIENT_DIALOG };
-		// NOTE: the ClassWizard will add data members here
+	CListBox	m_ctlRecvd;
+	CString	m_client_name;
+	CString	m_send_info;
+	CString	m_server_name;
+	int		m_nPort;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
