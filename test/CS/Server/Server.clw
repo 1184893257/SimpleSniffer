@@ -2,12 +2,12 @@
 
 [General Info]
 Version=1
-LastClass=CRWSock
+LastClass=CServerDlg
 LastTemplate=CSocket
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "Server.h"
 
-ClassCount=6
+ClassCount=5
 Class1=CServerApp
 Class2=CServerDlg
 Class3=CAboutDlg
@@ -15,8 +15,8 @@ Class3=CAboutDlg
 ResourceCount=3
 Resource1=IDD_ABOUTBOX
 Resource2=IDR_MAINFRAME
-Class5=CLSock
-Class6=CRWSock
+Class5=CRWSock
+Class4=CLSock
 Resource3=IDD_SERVER_DIALOG
 
 [CLS:CServerApp]
@@ -24,18 +24,23 @@ Type=0
 HeaderFile=Server.h
 ImplementationFile=Server.cpp
 Filter=N
+LastObject=CServerApp
 
 [CLS:CServerDlg]
 Type=0
 HeaderFile=ServerDlg.h
 ImplementationFile=ServerDlg.cpp
 Filter=D
+LastObject=IDC_NAME
+BaseClass=CDialog
+VirtualFilter=dWC
 
 [CLS:CAboutDlg]
 Type=0
 HeaderFile=ServerDlg.h
 ImplementationFile=ServerDlg.cpp
 Filter=D
+LastObject=CAboutDlg
 
 [DLG:IDD_ABOUTBOX]
 Type=1
@@ -58,8 +63,8 @@ Control5=IDC_CLOSE,button,1342242816
 Control6=IDC_SEND,button,1342242816
 Control7=IDC_HISTORY,listbox,1352728843
 Control8=IDC_SEND_INFO,edit,1350635652
-Control9=IDC_EDIT2,edit,1350631552
-Control10=IDC_EDIT3,edit,1350631552
+Control9=IDC_PORT,edit,1350631552
+Control10=IDC_NAME,edit,1350631552
 
 [CLS:CLSock]
 Type=0
@@ -74,4 +79,5 @@ HeaderFile=LSock.h
 ImplementationFile=LSock.cpp
 BaseClass=CSocket
 Filter=N
+LastObject=CRWSock
 

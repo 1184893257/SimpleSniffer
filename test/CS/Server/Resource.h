@@ -14,7 +14,9 @@
 #define IDC_HISTORY                     1003
 #define IDC_SEND_INFO                   1004
 #define IDC_EDIT2                       1005
+#define IDC_PORT                        1005
 #define IDC_EDIT3                       1006
+#define IDC_NAME                        1006
 
 // Next default values for new objects
 // 
