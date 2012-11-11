@@ -47,8 +47,6 @@ Control4=IDOK,button,1342373889
 [DLG:IDD_BREAKLOOP_DIALOG]
 Type=1
 Class=CBreakloopDlg
-ControlCount=3
-Control1=IDOK,button,1342242817
-Control2=IDCANCEL,button,1342242816
-Control3=IDC_STATIC,static,1342308352
+ControlCount=1
+Control1=IDC_DEVS,combobox,1344340226
 
