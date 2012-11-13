@@ -11,9 +11,9 @@ UINT ThreadProc(LPVOID param)
 {
 	pcap_t *adhandle=(pcap_t *)param;
 	
-	pcap_loop(adhandle, 0, packet_handler, NULL);
+	int loopreturn = pcap_loop(adhandle, 0, packet_handler, NULL);
 
-	::PostMessage(::AfxGetApp()->m_pMainWnd->m_hWnd, WM_TEXIT, NULL, NULL);
+	::PostMessage(::AfxGetApp()->m_pMainWnd->m_hWnd, WM_TEXIT, loopreturn, NULL);
 	
 	return 0;
 }

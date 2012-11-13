@@ -37,6 +37,7 @@ public:
 // Implementation
 protected:
 	vector<pcap_if_t *> devArray;// 设备列表转换过来的数组
+	pcap_t *cur_pcap_t;
 	HICON m_hIcon;
 
 	void initWinPcap();
@@ -47,6 +48,8 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void OnStart();
+	afx_msg void OnStop();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -82,6 +82,8 @@ BEGIN_MESSAGE_MAP(CBreakloopDlg, CDialog)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_START, OnStart)
+	ON_BN_CLICKED(IDC_STOP, OnStop)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -117,6 +119,8 @@ BOOL CBreakloopDlg::OnInitDialog()
 	
 	// TODO: Add extra initialization here
 	this->initWinPcap();
+	this->GetDlgItem(IDC_START)->EnableWindow(true);
+	this->GetDlgItem(IDC_STOP)->EnableWindow(false);
 	
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -192,4 +196,35 @@ void CBreakloopDlg::OnPaint()
 HCURSOR CBreakloopDlg::OnQueryDragIcon()
 {
 	return (HCURSOR) m_hIcon;
+}
+
+#include "thread.h"
+
+void CBreakloopDlg::OnStart() 
+{
+	// TODO: Add your control notification handler code here
+	char errbuf[PCAP_ERRBUF_SIZE];
+
+	pcap_if_t *d = this->devArray[this->m_DevList.GetCurSel()];
+
+	if ((this->cur_pcap_t = pcap_open(d->name, /* name of the device */
+		65536,/* portion of the packet to capture , 65535 guarantees that the whole packet will be captured on all the link layers */
+		PCAP_OPENFLAG_PROMISCUOUS,/* promiscuous mode */
+		1000,/* read timeout */
+		NULL,/* authentication on the remote machine */
+		errbuf/* error buffer */)) == NULL)
+	{
+		::AfxMessageBox("´ò¿ªÊÊÅäÆ÷Ê§°Ü!");
+		return;
+	}
+	::AfxBeginThread(ThreadProc, this->cur_pcap_t);
+
+	this->GetDlgItem(IDC_START)->EnableWindow(false);
+	this->GetDlgItem(IDC_STOP)->EnableWindow(true);
+}
+
+void CBreakloopDlg::OnStop() 
+{
+	// TODO: Add your control notification handler code here
+	pcap_breakloop(cur_pcap_t);
 }
