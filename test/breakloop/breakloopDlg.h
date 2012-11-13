@@ -25,6 +25,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CBreakloopDlg)
 	enum { IDD = IDD_BREAKLOOP_DIALOG };
+	CListBox	m_InfoList;
 	CComboBox	m_DevList;
 	//}}AFX_DATA
 
@@ -41,6 +42,8 @@ protected:
 	HICON m_hIcon;
 
 	void initWinPcap();
+	void OnTCatch(const struct pcap_pkthdr *header, const u_char *pkt_data);
+	void OnTExit(int exitNum);
 
 	// Generated message map functions
 	//{{AFX_MSG(CBreakloopDlg)

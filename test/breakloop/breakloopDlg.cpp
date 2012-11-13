@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "breakloop.h"
 #include "breakloopDlg.h"
+#include "thread.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -73,6 +74,7 @@ void CBreakloopDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CBreakloopDlg)
+	DDX_Control(pDX, IDC_INFO, m_InfoList);
 	DDX_Control(pDX, IDC_DEVS, m_DevList);
 	//}}AFX_DATA_MAP
 }
@@ -84,6 +86,8 @@ BEGIN_MESSAGE_MAP(CBreakloopDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_START, OnStart)
 	ON_BN_CLICKED(IDC_STOP, OnStop)
+	ON_MESSAGE(WM_TCATCH, OnTCatch)
+	ON_MESSAGE(WM_TEXIT, OnTExit)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -198,8 +202,6 @@ HCURSOR CBreakloopDlg::OnQueryDragIcon()
 	return (HCURSOR) m_hIcon;
 }
 
-#include "thread.h"
-
 void CBreakloopDlg::OnStart() 
 {
 	// TODO: Add your control notification handler code here
@@ -227,4 +229,29 @@ void CBreakloopDlg::OnStop()
 {
 	// TODO: Add your control notification handler code here
 	pcap_breakloop(cur_pcap_t);
+}
+
+void CBreakloopDlg::OnTCatch(const struct pcap_pkthdr *header, const u_char *pkt_data)
+{
+	struct tm *ltime;
+	char timestr[16];
+	
+	/* convert the timestamp to readable format */
+	ltime = localtime(&header->ts.tv_sec);
+	strftime(timestr, sizeof(timestr), "%H:%M:%S", ltime);
+
+	CString s;
+	s.Format("%s, %.6d len:%d\n", timestr, header->ts.tv_usec, header->len);
+
+	this->m_InfoList.AddString(s);
+}
+
+void CBreakloopDlg::OnTExit(int exitNum)
+{
+	CString s;
+	s.Format("线程退出了:%d", exitNum);
+	::AfxMessageBox(s);
+
+	this->GetDlgItem(IDC_START)->EnableWindow(true);
+	this->GetDlgItem(IDC_STOP)->EnableWindow(false);
 }

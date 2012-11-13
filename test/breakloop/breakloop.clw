@@ -30,7 +30,7 @@ ImplementationFile=breakloopDlg.cpp
 Filter=D
 BaseClass=CDialog
 VirtualFilter=dWC
-LastObject=IDC_STOP
+LastObject=IDC_INFO
 
 [CLS:CAboutDlg]
 Type=0
