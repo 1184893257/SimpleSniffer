@@ -7,7 +7,7 @@ LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "breakloop.h"
 
-ClassCount=4
+ClassCount=3
 Class1=CBreakloopApp
 Class2=CBreakloopDlg
 Class3=CAboutDlg
@@ -28,6 +28,9 @@ Type=0
 HeaderFile=breakloopDlg.h
 ImplementationFile=breakloopDlg.cpp
 Filter=D
+BaseClass=CDialog
+VirtualFilter=dWC
+LastObject=IDC_DEVS
 
 [CLS:CAboutDlg]
 Type=0
@@ -48,5 +51,5 @@ Control4=IDOK,button,1342373889
 Type=1
 Class=CBreakloopDlg
 ControlCount=1
-Control1=IDC_DEVS,combobox,1344340226
+Control1=IDC_DEVS,combobox,1344339971
 

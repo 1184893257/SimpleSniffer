@@ -73,7 +73,7 @@ void CBreakloopDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CBreakloopDlg)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
+	DDX_Control(pDX, IDC_DEVS, m_DevList);
 	//}}AFX_DATA_MAP
 }
 
@@ -116,8 +116,33 @@ BOOL CBreakloopDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 	
 	// TODO: Add extra initialization here
+	this->initWinPcap();
 	
 	return TRUE;  // return TRUE  unless you set the focus to a control
+}
+
+void CBreakloopDlg::initWinPcap()
+{
+	pcap_if_t *alldevs;
+	pcap_if_t *d;
+	char errbuf[PCAP_ERRBUF_SIZE];
+	
+	if (pcap_findalldevs_ex(PCAP_SRC_IF_STRING, NULL, &alldevs, errbuf) == -1){
+		::AfxMessageBox("获取设备列表失败");
+		return;
+	}
+	
+	for (d = alldevs; d; d = d->next){
+		this->m_DevList.AddString(d->description);
+		this->devArray.push_back(d);
+	}
+
+	this->UpdateData(false);
+}
+
+CBreakloopDlg::~CBreakloopDlg()
+{
+	pcap_freealldevs(this->devArray[0]);
 }
 
 void CBreakloopDlg::OnSysCommand(UINT nID, LPARAM lParam)
