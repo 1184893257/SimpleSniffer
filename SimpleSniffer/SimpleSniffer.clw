@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CSimpleSnifferView
+LastClass=CMainFrame
 LastTemplate=CEditView
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "SimpleSniffer.h"
@@ -49,6 +49,9 @@ Type=0
 HeaderFile=MainFrm.h
 ImplementationFile=MainFrm.cpp
 Filter=T
+BaseClass=CFrameWnd
+VirtualFilter=fWC
+LastObject=CMainFrame
 
 
 

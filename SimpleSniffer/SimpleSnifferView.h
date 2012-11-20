@@ -9,6 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+class CSimpleSnifferDoc;
 
 class CSimpleSnifferView : public CFormView
 {

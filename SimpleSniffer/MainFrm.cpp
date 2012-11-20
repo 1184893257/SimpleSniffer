@@ -5,6 +5,9 @@
 #include "SimpleSniffer.h"
 
 #include "MainFrm.h"
+#include "SimpleSnifferView.h"
+#include "InfoView.h"
+#include "HexView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -105,3 +108,24 @@ void CMainFrame::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
 
+BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
+{
+	// TODO: Add your specialized code here and/or call the base class
+	CRect rc;
+
+    // 获取框架窗口客户区的CRect对象
+    GetClientRect(&rc);
+
+    // 创建静态分割窗口，三行一列
+    if (!m_wndSplitter.CreateStatic(this, 3, 1, WS_CHILD | WS_VISIBLE))
+        return FALSE;
+
+    if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CSimpleSnifferView), CSize(rc.Width(), 100), pContext))
+        return FALSE;
+	if (!m_wndSplitter.CreateView(1, 0, RUNTIME_CLASS(CInfoView), CSize(rc.Width(), rc.Height()/3), pContext))
+        return FALSE;
+    if (!m_wndSplitter.CreateView(2, 0, RUNTIME_CLASS(CHexView), CSize(rc.Width(), rc.Height()/2), pContext))
+        return FALSE;
+
+    return TRUE;
+}

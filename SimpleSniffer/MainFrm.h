@@ -11,6 +11,8 @@
 
 class CMainFrame : public CFrameWnd
 {
+protected:
+	CSplitterWnd m_wndSplitter;// 用于创建分隔窗体
 	
 protected: // create from serialization only
 	CMainFrame();
@@ -25,7 +27,10 @@ public:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMainFrame)
+	public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	protected:
+	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 	//}}AFX_VIRTUAL
 
 // Implementation
