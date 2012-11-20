@@ -13,6 +13,9 @@ class CSimpleSnifferDoc;
 
 class CSimpleSnifferView : public CFormView
 {
+protected:
+	void OnTExit(int exitNum);// 处理抓包线程退出的事件
+
 protected: // create from serialization only
 	CSimpleSnifferView();
 	DECLARE_DYNCREATE(CSimpleSnifferView)

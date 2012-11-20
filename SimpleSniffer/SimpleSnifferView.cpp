@@ -6,6 +6,7 @@
 
 #include "SimpleSnifferDoc.h"
 #include "SimpleSnifferView.h"
+#include "Thread.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -22,6 +23,7 @@ BEGIN_MESSAGE_MAP(CSimpleSnifferView, CFormView)
 	//{{AFX_MSG_MAP(CSimpleSnifferView)
 	ON_BN_CLICKED(IDC_START, OnStart)
 	ON_BN_CLICKED(IDC_STOP, OnStop)
+	ON_MESSAGE(WM_TEXIT, OnTExit)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CFormView::OnFilePrint)
@@ -128,4 +130,9 @@ void CSimpleSnifferView::OnStop()
 {
 	// TODO: Add your control notification handler code here
 	
+}
+
+void CSimpleSnifferView::OnTExit(int exitNum)
+{
+
 }
