@@ -72,6 +72,7 @@ void CSimpleSnifferView::OnInitialUpdate()
 	this->InitWinPcap();// Ö´ÐÐ WinPcap ³õÊ¼»¯
 	this->GetDlgItem(IDC_START)->EnableWindow(true);
 	this->GetDlgItem(IDC_STOP)->EnableWindow(false);
+	theApp.m_control = this->GetSafeHwnd();
 }
 
 /////////////////////////////////////////////////////////////////////////////

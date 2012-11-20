@@ -25,6 +25,8 @@ class CSimpleSnifferApp : public CWinApp
 public:
 	CSimpleSnifferApp();
 	Hex *m_editor;
+	HWND m_control;// 接收线程退出的消息的句柄
+	HWND m_display;// 接收抓到包的消息的句柄
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -42,6 +44,7 @@ public:
 	DECLARE_MESSAGE_MAP()
 };
 
+extern CSimpleSnifferApp theApp;
 
 /////////////////////////////////////////////////////////////////////////////
 

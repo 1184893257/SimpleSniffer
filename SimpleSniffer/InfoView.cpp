@@ -64,3 +64,11 @@ void CInfoView::OnTCatch(const struct pcap_pkthdr *header, const u_char *pkt_dat
 {
 
 }
+
+void CInfoView::OnInitialUpdate() 
+{
+	CListView::OnInitialUpdate();
+	
+	// TODO: Add your specialized code here and/or call the base class
+	theApp.m_display = this->GetSafeHwnd();
+}

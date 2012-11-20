@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CSimpleSnifferView
+LastClass=CInfoView
 LastTemplate=CEditView
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "SimpleSniffer.h"
@@ -41,7 +41,7 @@ ImplementationFile=SimpleSnifferView.cpp
 Filter=D
 BaseClass=CFormView
 VirtualFilter=VWC
-LastObject=IDC_DEVS
+LastObject=CSimpleSnifferView
 
 
 [CLS:CMainFrame]
@@ -138,6 +138,8 @@ HeaderFile=InfoView.h
 ImplementationFile=InfoView.cpp
 BaseClass=CListView
 Filter=C
+VirtualFilter=VWC
+LastObject=CInfoView
 
 [CLS:CHexView]
 Type=0
