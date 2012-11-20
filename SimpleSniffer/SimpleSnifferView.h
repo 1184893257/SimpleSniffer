@@ -9,12 +9,21 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include <pcap.h>
+#include <vector>
+using namespace std;
+
 class CSimpleSnifferDoc;
 
 class CSimpleSnifferView : public CFormView
 {
 protected:
+	vector<pcap_if_t *> m_devsArray;// 设备列表转换过来的数组
+	pcap_t *m_curDev;	// 当前 pcap_loop 监听的设备
+
+protected:
 	void OnTExit(int exitNum);// 处理抓包线程退出的事件
+	void InitWinPcap();	// 初始化 WinPcap
 
 protected: // create from serialization only
 	CSimpleSnifferView();
@@ -22,8 +31,8 @@ protected: // create from serialization only
 
 public:
 	//{{AFX_DATA(CSimpleSnifferView)
-	enum{ IDD = IDD_SIMPLESNIFFER_FORM };
-		// NOTE: the ClassWizard will add data members here
+	enum { IDD = IDD_SIMPLESNIFFER_FORM };
+	CComboBox	m_devsName;
 	//}}AFX_DATA
 
 // Attributes

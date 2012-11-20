@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CMainFrame
+LastClass=CSimpleSnifferView
 LastTemplate=CEditView
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "SimpleSniffer.h"
@@ -15,12 +15,12 @@ Class3=CSimpleSnifferView
 Class4=CMainFrame
 
 ResourceCount=3
-Resource1=IDR_MAINFRAME
+Resource1=IDD_SIMPLESNIFFER_FORM
 Resource2=IDD_ABOUTBOX
 Class5=CAboutDlg
 Class6=CInfoView
 Class7=CHexView
-Resource3=IDD_SIMPLESNIFFER_FORM
+Resource3=IDR_MAINFRAME
 
 [CLS:CSimpleSnifferApp]
 Type=0
@@ -41,7 +41,7 @@ ImplementationFile=SimpleSnifferView.cpp
 Filter=D
 BaseClass=CFormView
 VirtualFilter=VWC
-LastObject=IDC_STOP
+LastObject=IDC_DEVS
 
 
 [CLS:CMainFrame]

@@ -52,7 +52,7 @@ void CSimpleSnifferView::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CSimpleSnifferView)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
+	DDX_Control(pDX, IDC_DEVS, m_devsName);
 	//}}AFX_DATA_MAP
 }
 
@@ -69,7 +69,7 @@ void CSimpleSnifferView::OnInitialUpdate()
 	CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
-
+	this->InitWinPcap();// 执行 WinPcap 初始化
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -135,4 +135,23 @@ void CSimpleSnifferView::OnStop()
 void CSimpleSnifferView::OnTExit(int exitNum)
 {
 
+}
+
+void CSimpleSnifferView::InitWinPcap()
+{
+	pcap_if_t *alldevs;
+	pcap_if_t *d;
+	char errbuf[PCAP_ERRBUF_SIZE];
+
+	if (pcap_findalldevs_ex(PCAP_SRC_IF_STRING, NULL, &alldevs, errbuf) == -1){
+		::AfxMessageBox("获取设备列表失败");
+		return;
+	}
+
+	for (d = alldevs; d; d = d->next){
+		this->m_devsName.AddString(d->description);
+		this->m_devsArray.push_back(d);
+	}
+
+	this->UpdateData(false);
 }
