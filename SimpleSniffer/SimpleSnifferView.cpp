@@ -70,6 +70,8 @@ void CSimpleSnifferView::OnInitialUpdate()
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
 	this->InitWinPcap();// 执行 WinPcap 初始化
+	this->GetDlgItem(IDC_START)->EnableWindow(true);
+	this->GetDlgItem(IDC_STOP)->EnableWindow(false);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -123,18 +125,36 @@ CSimpleSnifferDoc* CSimpleSnifferView::GetDocument() // non-debug version is inl
 void CSimpleSnifferView::OnStart() 
 {
 	// TODO: Add your control notification handler code here
-	
+	char errbuf[PCAP_ERRBUF_SIZE];
+
+	pcap_if_t *d = this->m_devsArray[this->m_devsName.GetCurSel()];
+
+	if ((this->m_curDev = pcap_open(d->name, /* name of the device */
+		65536,/* portion of the packet to capture , 65535 guarantees that the whole packet will be captured on all the link layers */
+		PCAP_OPENFLAG_PROMISCUOUS,/* promiscuous mode */
+		1000,/* read timeout */
+		NULL,/* authentication on the remote machine */
+		errbuf/* error buffer */)) == NULL)
+	{
+		::AfxMessageBox("打开适配器失败!");
+		return;
+	}
+	::AfxBeginThread(ThreadProc, this->m_curDev);
+
+	this->GetDlgItem(IDC_START)->EnableWindow(false);
+	this->GetDlgItem(IDC_STOP)->EnableWindow(true);
 }
 
 void CSimpleSnifferView::OnStop() 
 {
 	// TODO: Add your control notification handler code here
-	
+	pcap_breakloop(this->m_curDev);
 }
 
 void CSimpleSnifferView::OnTExit(int exitNum)
 {
-
+	this->GetDlgItem(IDC_START)->EnableWindow(true);
+	this->GetDlgItem(IDC_STOP)->EnableWindow(false);
 }
 
 void CSimpleSnifferView::InitWinPcap()
