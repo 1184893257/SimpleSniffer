@@ -78,7 +78,7 @@ void CHexView::ShowHexText(char *data, int len)
 
 		for(pos = 0; pos < lineLength; ++pos)
 		{
-			char c = data[lineHead + pos];
+			unsigned char c = (unsigned char)data[lineHead + pos];
 
 			// 16进制格式
 			if(pos != 8)
