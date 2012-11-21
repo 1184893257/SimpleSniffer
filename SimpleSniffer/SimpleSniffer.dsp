@@ -139,6 +139,10 @@ SOURCE=.\HexView.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Info.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\InfoView.h
 # End Source File
 # Begin Source File

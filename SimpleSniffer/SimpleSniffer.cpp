@@ -43,6 +43,7 @@ CSimpleSnifferApp::CSimpleSnifferApp()
 // The one and only CSimpleSnifferApp object
 
 CSimpleSnifferApp theApp;
+int count=1;
 
 /////////////////////////////////////////////////////////////////////////////
 // CSimpleSnifferApp initialization

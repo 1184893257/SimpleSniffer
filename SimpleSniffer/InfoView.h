@@ -10,12 +10,15 @@
 /////////////////////////////////////////////////////////////////////////////
 // CInfoView view
 #include <pcap.h>
+#include <vector>
+#include "Info.h"
+using namespace std;
 
 class CInfoView : public CListView
 {
 protected:
 	void OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data);// 处理抓到包的事件
-
+	vector<Info> m_info;
 protected:
 	CInfoView();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CInfoView)
@@ -46,7 +49,7 @@ protected:
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CInfoView)
-		// NOTE - the ClassWizard will add and remove member functions here.
+	afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
