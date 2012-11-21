@@ -120,8 +120,8 @@ void CInfoView::OnInitialUpdate()
 	
 	m_list.InsertColumn( 0, "序号", LVCFMT_CENTER, 50);
 	m_list.InsertColumn( 1, "时间", LVCFMT_CENTER, 80); 
-	m_list.InsertColumn( 2, "源MAC", LVCFMT_CENTER, 110 );
-	m_list.InsertColumn( 3, "目的MAC", LVCFMT_CENTER, 110 );
+	m_list.InsertColumn( 2, "源MAC", LVCFMT_CENTER, 130 );
+	m_list.InsertColumn( 3, "目的MAC", LVCFMT_CENTER, 130 );
 	m_list.InsertColumn( 4, "长度", LVCFMT_CENTER,100 );
 }
 
