@@ -69,6 +69,23 @@ void CInfoView::OnInitialUpdate()
 {
 	CListView::OnInitialUpdate();
 	
-	// TODO: Add your specialized code here and/or call the base class
 	theApp.m_display = this->GetSafeHwnd();
+	CListCtrl& m_list = GetListCtrl();
+	LONG lStyle;
+	lStyle = GetWindowLong(m_list.m_hWnd, GWL_STYLE);
+	lStyle &= ~LVS_TYPEMASK;
+	lStyle |= LVS_REPORT;
+	SetWindowLong(m_list.m_hWnd, GWL_STYLE, lStyle); 
+	DWORD dwStyle = m_list.GetExtendedStyle();
+	dwStyle |= LVS_EX_FULLROWSELECT;
+	dwStyle |= LVS_EX_GRIDLINES;
+	m_list.SetExtendedStyle(dwStyle);
+	m_list.SetBkColor(RGB(200, 200, 200));
+	m_list.SetTextBkColor(RGB(200, 200, 200));
+	m_list.SetTextColor(RGB(10, 10, 80));
+
+	m_list.InsertColumn( 0, "时间", LVCFMT_CENTER, 110); 
+	m_list.InsertColumn( 1, "源MAC", LVCFMT_CENTER, 120 );
+	m_list.InsertColumn( 2, "目的MAC", LVCFMT_CENTER, 120 );
+	m_list.InsertColumn( 3, "长度", LVCFMT_CENTER,120 );
 }
