@@ -13,6 +13,8 @@
 class CHexView : public CEditView, public Hex
 {
 protected:
+	CFont m_Font;
+protected:
 	CHexView();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CHexView)
 
@@ -26,6 +28,8 @@ public:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CHexView)
+	public:
+	virtual void OnInitialUpdate();
 	protected:
 	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
 	//}}AFX_VIRTUAL
