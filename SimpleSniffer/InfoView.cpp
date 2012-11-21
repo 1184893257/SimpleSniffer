@@ -60,7 +60,7 @@ void CInfoView::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CInfoView message handlers
 
-void CInfoView::OnTCatch(const struct pcap_pkthdr *header, const u_char *pkt_data)
+void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 {
 
 }

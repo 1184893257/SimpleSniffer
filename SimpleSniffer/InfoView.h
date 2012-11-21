@@ -14,7 +14,7 @@
 class CInfoView : public CListView
 {
 protected:
-	void OnTCatch(const struct pcap_pkthdr *header, const u_char *pkt_data);// 处理抓到包的事件
+	void OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data);// 处理抓到包的事件
 
 protected:
 	CInfoView();           // protected constructor used by dynamic creation
