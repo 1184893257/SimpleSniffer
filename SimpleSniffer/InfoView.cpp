@@ -97,6 +97,9 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	ctr.SetItemText(row, 2, m_dmac);
 	ctr.SetItemText(row, 3, m_smac);
 	ctr.SetItemText(row, 4, m_len);
+
+	// 抓到包后设置文档已修改, 退出的时候就会提醒用户保存 dump 文件
+	this->GetDocument()->SetModifiedFlag();
 }
 
 void CInfoView::OnInitialUpdate() 

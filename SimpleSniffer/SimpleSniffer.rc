@@ -269,7 +269,7 @@ END
 
 STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
-    IDR_MAINFRAME           "SimpleSniffer\n\nSimple\n\n\nSimpleSniffer.Document\nSimple Document"
+    IDR_MAINFRAME           "SimpleSniffer\n\nSimple\nWinPcap Files(*.pcap)\n.pcap\nSimpleSniffer.Document\nSimple Document"
 END
 
 STRINGTABLE PRELOAD DISCARDABLE 
