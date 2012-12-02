@@ -130,7 +130,7 @@ void CSimpleSnifferView::OnStart()
 
 	pcap_if_t *d = this->m_devsArray[this->m_devsName.GetCurSel()];
 
-	if ((this->m_curDev = pcap_open(d->name, /* name of the device */
+	if ((theApp.m_curDev = pcap_open(d->name, /* name of the device */
 		65536,/* portion of the packet to capture , 65535 guarantees that the whole packet will be captured on all the link layers */
 		PCAP_OPENFLAG_PROMISCUOUS,/* promiscuous mode */
 		1000,/* read timeout */
@@ -140,7 +140,8 @@ void CSimpleSnifferView::OnStart()
 		::AfxMessageBox("´ò¿ªÊÊÅäÆ÷Ê§°Ü!");
 		return;
 	}
-	::AfxBeginThread(ThreadProc, this->m_curDev);
+	theApp.m_dumper = pcap_dump_open(theApp.m_curDev, theApp.m_tempDumpFilePath);
+	::AfxBeginThread(ThreadProc, new ThreadParam(theApp.m_curDev, theApp.m_dumper));
 
 	this->GetDlgItem(IDC_START)->EnableWindow(false);
 	this->GetDlgItem(IDC_STOP)->EnableWindow(true);
@@ -149,11 +150,15 @@ void CSimpleSnifferView::OnStart()
 void CSimpleSnifferView::OnStop() 
 {
 	// TODO: Add your control notification handler code here
-	pcap_breakloop(this->m_curDev);
+	pcap_breakloop(theApp.m_curDev);
 }
 
 void CSimpleSnifferView::OnTExit(int exitNum)
 {
+	pcap_close(theApp.m_curDev);
+	if(theApp.m_dumper)
+		pcap_dump_close(theApp.m_dumper);
+
 	this->GetDlgItem(IDC_START)->EnableWindow(true);
 	this->GetDlgItem(IDC_STOP)->EnableWindow(false);
 }

@@ -19,7 +19,6 @@ class CSimpleSnifferView : public CFormView
 {
 protected:
 	vector<pcap_if_t *> m_devsArray;// 设备列表转换过来的数组
-	pcap_t *m_curDev;	// 当前 pcap_loop 监听的设备
 
 protected:
 	void OnTExit(int exitNum);// 处理抓包线程退出的事件

@@ -37,6 +37,9 @@ CSimpleSnifferApp::CSimpleSnifferApp()
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
+	char buf[1024];
+	GetCurrentDirectory(sizeof(buf),buf);
+	this->m_tempDumpFilePath.Format("%s\\tmp.pcap", buf);
 }
 
 /////////////////////////////////////////////////////////////////////////////

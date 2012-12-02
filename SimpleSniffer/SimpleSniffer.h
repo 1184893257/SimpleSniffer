@@ -14,6 +14,7 @@
 
 #include "resource.h"       // main symbols
 #include "Hex.h"
+#include <pcap.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // CSimpleSnifferApp:
@@ -27,6 +28,9 @@ public:
 	Hex *m_editor;
 	HWND m_control;// 接收线程退出的消息的句柄
 	HWND m_display;// 接收抓到包的消息的句柄
+	pcap_t *m_curDev;	// 当前 pcap_loop 监听的设备
+	CString m_tempDumpFilePath; // 临时存储 dumpfile 的文件路径
+	pcap_dumper_t *m_dumper; // 用于存储 dump 信息
 
 // Overrides
 	// ClassWizard generated virtual function overrides
