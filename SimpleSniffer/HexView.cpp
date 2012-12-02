@@ -110,7 +110,11 @@ void CHexView::OnInitialUpdate()
 {
 	CEditView::OnInitialUpdate();
 	
-	// TODO: Add your specialized code here and/or call the base class
+	static BOOL inited = FALSE;
+	if(inited) return;
+	inited = TRUE;
+	// 以下代码只在首次调用 OnInitialUpdate 时执行
+
 	CEdit& control = this->GetEditCtrl();
 	control.SetReadOnly();// 编辑区只读, 不允许手动更改
 

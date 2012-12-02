@@ -106,6 +106,11 @@ void CInfoView::OnInitialUpdate()
 {
 	CListView::OnInitialUpdate();
 	
+	static BOOL inited = FALSE;
+	if(inited) return;
+	inited = TRUE;
+	// 以下代码只在首次调用 OnInitialUpdate 时执行
+
 	theApp.m_display = this->GetSafeHwnd();
 	CListCtrl& m_list = GetListCtrl();
 	LONG lStyle;

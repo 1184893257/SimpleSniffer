@@ -69,6 +69,12 @@ void CSimpleSnifferView::OnInitialUpdate()
 	CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
+
+	static BOOL inited = FALSE;
+	if(inited) return;
+	inited = TRUE;
+	// 以下代码只在首次调用 OnInitialUpdate 时执行
+
 	this->InitWinPcap();// 执行 WinPcap 初始化
 	this->GetDlgItem(IDC_START)->EnableWindow(true);
 	this->GetDlgItem(IDC_STOP)->EnableWindow(false);
