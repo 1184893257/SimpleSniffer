@@ -46,6 +46,7 @@ CSimpleSnifferView::CSimpleSnifferView()
 
 CSimpleSnifferView::~CSimpleSnifferView()
 {
+	pcap_freealldevs(*(this->m_devsArray.begin()));
 }
 
 void CSimpleSnifferView::DoDataExchange(CDataExchange* pDX)
