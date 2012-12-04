@@ -67,9 +67,13 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	struct tm *ltime;
 	char timestr[16];						//用于存储时间
 	CString line_num,m_len,m_smac,m_dmac;	//用于输出格式转化
+	CString m_kind;							//用于记录类型
+	CString m_cntl;							//用于测试是不是802.3帧
 	Info temp_info;							//用于添加所捕获的数据包
 	u_char S_mac[6];						//存源MAC
 	u_char D_mac[6];						//存目的MAC
+	u_char Kind[2];							//存以太帧类型
+	u_char Cntl[1];							//如果是802.3帧，就应该是03
 	//存储数据包
 	temp_info.header=header;
 	temp_info.pkt_data=pkt_data;
@@ -86,8 +90,12 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	//处理pkt_data得到详细信息
 	memcpy(D_mac,pkt_data,6);
 	memcpy(S_mac,pkt_data+6,6);
+	memcpy(Kind,pkt_data+12,2);
+	memcpy(Cntl,pkt_data+16,1);
 	m_dmac.Format("%02X-%02X-%02X-%02X-%02X-%02X",D_mac[0],D_mac[1],D_mac[2],D_mac[3],D_mac[4],D_mac[5],D_mac[6]);
 	m_smac.Format("%02X-%02X-%02X-%02X-%02X-%02X",S_mac[0],S_mac[1],S_mac[2],S_mac[3],S_mac[4],S_mac[5],S_mac[6]);
+	m_kind.Format("%02X%02X",Kind[0],Kind[1]);
+	m_cntl.Format("%02X",Cntl[0]);
 
 	//在列表中显示
 	CListCtrl& ctr = this->GetListCtrl();
@@ -97,7 +105,8 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	ctr.SetItemText(row, 2, m_dmac);
 	ctr.SetItemText(row, 3, m_smac);
 	ctr.SetItemText(row, 4, m_len);
-
+	ctr.SetItemText(row, 5, m_kind);
+	ctr.SetItemText(row, 6, m_cntl);
 	// 抓到包后设置文档已修改, 退出的时候就会提醒用户保存 dump 文件
 	this->GetDocument()->SetModifiedFlag();
 }
@@ -110,7 +119,7 @@ void CInfoView::OnInitialUpdate()
 	if(inited) return;
 	inited = TRUE;
 	// 以下代码只在首次调用 OnInitialUpdate 时执行
-
+	
 	theApp.m_display = this->GetSafeHwnd();
 	CListCtrl& m_list = GetListCtrl();
 	LONG lStyle;
@@ -131,6 +140,8 @@ void CInfoView::OnInitialUpdate()
 	m_list.InsertColumn( 2, "源MAC", LVCFMT_CENTER, 130 );
 	m_list.InsertColumn( 3, "目的MAC", LVCFMT_CENTER, 130 );
 	m_list.InsertColumn( 4, "长度", LVCFMT_CENTER,100 );
+	m_list.InsertColumn( 5, "类型",LVCFMT_CENTER,80);
+	m_list.InsertColumn( 6, "802.3",LVCFMT_CENTER,50);
 }
 
 void CInfoView::OnClick(NMHDR* pNMHDR, LRESULT* pResult) 
