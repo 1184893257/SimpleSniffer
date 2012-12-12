@@ -12,6 +12,9 @@
 
 class CPackInfo : public CEditView
 {
+public:
+	void ShowPackInfo(const CString& info);
+
 protected:
 	CPackInfo();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CPackInfo)
@@ -25,6 +28,8 @@ public:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CPackInfo)
+	public:
+	virtual void OnInitialUpdate();
 	protected:
 	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
 	//}}AFX_VIRTUAL

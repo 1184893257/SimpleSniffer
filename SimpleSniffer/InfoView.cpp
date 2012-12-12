@@ -142,6 +142,7 @@ void CInfoView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
     if(iItem != -1)
     {
         theApp.m_editor->ShowHexText((char*)m_info[iItem].pkt_data, m_info[iItem].header->len);
+		theApp.m_packInfo->ShowPackInfo("第1行\r\n第2行");
     }
     *pResult = 0;
 }

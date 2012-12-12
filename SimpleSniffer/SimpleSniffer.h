@@ -14,6 +14,7 @@
 
 #include "resource.h"       // main symbols
 #include "Hex.h"
+#include "PackInfo.h"
 #include <pcap.h>
 
 /////////////////////////////////////////////////////////////////////////////
@@ -25,6 +26,7 @@ class CSimpleSnifferApp : public CWinApp
 {
 public:
 	CSimpleSnifferApp();
+	CPackInfo *m_packInfo;
 	Hex *m_editor;
 	HWND m_control;// 接收线程退出的消息的句柄
 	HWND m_display;// 接收抓到包的消息的句柄

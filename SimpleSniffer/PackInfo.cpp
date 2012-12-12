@@ -18,6 +18,7 @@ IMPLEMENT_DYNCREATE(CPackInfo, CEditView)
 
 CPackInfo::CPackInfo()
 {
+	theApp.m_packInfo = this;
 }
 
 CPackInfo::~CPackInfo()
@@ -57,3 +58,21 @@ void CPackInfo::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // CPackInfo message handlers
+
+void CPackInfo::OnInitialUpdate()
+{
+	CEditView::OnInitialUpdate();
+
+	static BOOL inited = FALSE;
+	if(inited) return;
+	inited = TRUE;
+	// 以下代码只在首次调用 OnInitialUpdate 时执行
+
+	CEdit& control = this->GetEditCtrl();
+	control.SetReadOnly();// 编辑区只读, 不允许手动更改
+}
+
+void CPackInfo::ShowPackInfo(const CString& info)
+{
+	this->SetWindowText(info);
+}
