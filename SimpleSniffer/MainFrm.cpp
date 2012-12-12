@@ -8,6 +8,7 @@
 #include "SimpleSnifferView.h"
 #include "InfoView.h"
 #include "HexView.h"
+#include "PackInfo.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -117,14 +118,16 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
     GetClientRect(&rc);
 
     // 创建静态分割窗口，三行一列
-    if (!m_wndSplitter.CreateStatic(this, 3, 1, WS_CHILD | WS_VISIBLE))
+    if (!m_wndSplitter.CreateStatic(this, 4, 1, WS_CHILD | WS_VISIBLE))
         return FALSE;
 
     if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CSimpleSnifferView), CSize(rc.Width(), 100), pContext))
         return FALSE;
-	if (!m_wndSplitter.CreateView(1, 0, RUNTIME_CLASS(CInfoView), CSize(rc.Width(), rc.Height()/3), pContext))
+	if (!m_wndSplitter.CreateView(1, 0, RUNTIME_CLASS(CInfoView), CSize(rc.Width(), rc.Height()/4), pContext))
         return FALSE;
-    if (!m_wndSplitter.CreateView(2, 0, RUNTIME_CLASS(CHexView), CSize(rc.Width(), rc.Height()/2), pContext))
+	if (!m_wndSplitter.CreateView(2, 0, RUNTIME_CLASS(CPackInfo), CSize(rc.Width(), rc.Height()/4), pContext))
+        return FALSE;
+    if (!m_wndSplitter.CreateView(3, 0, RUNTIME_CLASS(CHexView), CSize(rc.Width(), rc.Height()/4), pContext))
         return FALSE;
 
     return TRUE;
