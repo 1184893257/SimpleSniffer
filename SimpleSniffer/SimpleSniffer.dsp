@@ -102,6 +102,10 @@ SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PackInfo.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\SimpleSniffer.cpp
 # End Source File
 # Begin Source File
@@ -148,6 +152,10 @@ SOURCE=.\InfoView.h
 # Begin Source File
 
 SOURCE=.\MainFrm.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PackInfo.h
 # End Source File
 # Begin Source File
 

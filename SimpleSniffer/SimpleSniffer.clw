@@ -2,24 +2,25 @@
 
 [General Info]
 Version=1
-LastClass=CHexView
+LastClass=CPackInfo
 LastTemplate=CEditView
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "SimpleSniffer.h"
 LastPage=0
 
-ClassCount=7
+ClassCount=8
 Class1=CSimpleSnifferApp
 Class2=CSimpleSnifferDoc
 Class3=CSimpleSnifferView
 Class4=CMainFrame
 
 ResourceCount=3
-Resource1=IDD_ABOUTBOX
-Resource2=IDR_MAINFRAME
+Resource1=IDR_MAINFRAME
+Resource2=IDD_ABOUTBOX
 Class5=CAboutDlg
 Class6=CInfoView
 Class7=CHexView
+Class8=CPackInfo
 Resource3=IDD_SIMPLESNIFFER_FORM
 
 [CLS:CSimpleSnifferApp]
@@ -149,4 +150,11 @@ BaseClass=CEditView
 Filter=C
 LastObject=CHexView
 VirtualFilter=VWC
+
+[CLS:CPackInfo]
+Type=0
+HeaderFile=PackInfo.h
+ImplementationFile=PackInfo.cpp
+BaseClass=CEditView
+Filter=C
 
