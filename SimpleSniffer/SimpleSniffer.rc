@@ -255,15 +255,10 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_FILE_NEW             "建立新文档\n新建"
     ID_FILE_OPEN            "打开一个现有文档\n打开"
     ID_FILE_CLOSE           "关闭活动文档\n关闭"
     ID_FILE_SAVE            "保存活动文档\n保存"
     ID_FILE_SAVE_AS         "将活动文档以一个新文件名保存\n另存为"
-    ID_FILE_PAGE_SETUP      "改变打印选项\n页面设置"
-    ID_FILE_PRINT_SETUP     "改变打印机及打印选项\n打印设置"
-    ID_FILE_PRINT           "打印活动文档\n打印"
-    ID_FILE_PRINT_PREVIEW   "显示整页\n打印预览"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -290,60 +285,6 @@ BEGIN
     ID_FILE_MRU_FILE14      "打开该文档"
     ID_FILE_MRU_FILE15      "打开该文档"
     ID_FILE_MRU_FILE16      "打开该文档"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_NEXT_PANE            "切换到下一个窗格\n下一窗格"
-    ID_PREV_PANE            "切换回前一个窗格\n前一窗格"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_WINDOW_SPLIT         "将活动的窗口分隔成窗格\n分隔"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_EDIT_CLEAR           "删除被选对象\n删除"
-    ID_EDIT_CLEAR_ALL       "全部删除\n全部删除"
-    ID_EDIT_COPY            "复制被选对象并将其置于剪贴板上\n复制"
-    ID_EDIT_CUT             "剪切被选对象并将其置于剪贴板上\n剪切"
-    ID_EDIT_FIND            "查找指定的正文\n查找"
-    ID_EDIT_PASTE           "插入剪贴板内容\n粘贴"
-    ID_EDIT_REPEAT          "重复上一步操作\n重复"
-    ID_EDIT_REPLACE         "用不同的正文替换指定的正文\n替换"
-    ID_EDIT_SELECT_ALL      "选择整个文档\n选择全部"
-    ID_EDIT_UNDO            "撤消最后一步操作\n撤消"
-    ID_EDIT_REDO            "重新执行先前已撤消的操作\n重新执行"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n显隐工具栏"
-    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n显隐状态栏"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    AFX_IDS_SCSIZE          "改变窗口大小"
-    AFX_IDS_SCMOVE          "改变窗口位置"
-    AFX_IDS_SCMINIMIZE      "将窗口缩小成图标"
-    AFX_IDS_SCMAXIMIZE      "把窗口放大到最大尺寸"
-    AFX_IDS_SCNEXTWINDOW    "切换到下一个文档窗口"
-    AFX_IDS_SCPREVWINDOW    "切换到先前的文档窗口"
-    AFX_IDS_SCCLOSE         "关闭活动的窗口并提示保存所有文档"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    AFX_IDS_SCRESTORE       "把窗口恢复到正常大小"
-    AFX_IDS_SCTASKLIST      "激活任务表"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "关闭打印预览模式\n取消预阅"
 END
 
 #endif    // Chinese (中国) resources
