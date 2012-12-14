@@ -3,13 +3,12 @@
 #include <string.h>
 #include "Head.h"
 
-
 using namespace std;
 
 const CString sign_ip="0800";
 const CString sign_arp="0806";
 
-void Head_Ethernet:analysis(u_char *pkt_data)
+void Head_Ethernet::analysis(u_char *pkt_data)
 {
 	CString m_kind;
 
@@ -18,12 +17,12 @@ void Head_Ethernet:analysis(u_char *pkt_data)
 	memcpy(kind,pkt_data+12,2);
 	m_kind.Format("%02X%02X",kind[0],kind[1]);
 	//判断下一层协议
-	if(m_kind.compare(sign_ip) == 0)
+	if(m_kind.Compare(sign_ip) == 0)
 	{
 		next=new Head_IP();
 		next->analysis(pkt_data+14);
 	}
-	else if(m_kind.compare(sign_arp) == 0)
+	else if(m_kind.Compare(sign_arp) == 0)
 	{
 		next=new Head_ARP();
 		next->analysis(pkt_data+14);
@@ -34,12 +33,12 @@ void Head_Ethernet:analysis(u_char *pkt_data)
 	}
 }
 
-void Head_Ethernet:my_print()
+void Head_Ethernet::my_print()
 {
 
 }
 
-void Head_802_3:analysis(u_char *pkt_data)
+void Head_802_3::analysis(u_char *pkt_data)
 {
 	CString m_kind;
 
@@ -48,12 +47,12 @@ void Head_802_3:analysis(u_char *pkt_data)
 	memcpy(kind,pkt_data+20,2);
 	m_kind.Format("%02X%02X",kind[0],kind[1]);
 	//判断下一层协议
-	if(m_kind.compare(sign_ip) == 0)
+	if(m_kind.Compare(sign_ip) == 0)
 	{
 		next=new Head_IP();
 		next->analysis(pkt_data+22);
 	}
-	else if(m_kind.compare(sign_arp) == 0)
+	else if(m_kind.Compare(sign_arp) == 0)
 	{
 		next=new Head_ARP();
 		next->analysis(pkt_data+22);
@@ -64,12 +63,12 @@ void Head_802_3:analysis(u_char *pkt_data)
 	}
 }
 
-void Head_802_3:my_print()
+void Head_802_3::my_print()
 {
 
 }
 
-void Head_ARP:analysis(u_char *pkt_data)
+void Head_ARP::analysis(u_char *pkt_data)
 {
 	memcpy(op,pkt_data+6,2);
 	memcpy(S_Mac,pkt_data+8,6);
@@ -80,12 +79,12 @@ void Head_ARP:analysis(u_char *pkt_data)
 	next=NULL;						//ARP就到头了
 }
 
-void Head_ARP:my_print()
+void Head_ARP::my_print()
 {
 
 }
 
-void Head_IP:analysis(u_char *pkt_data)
+void Head_IP::analysis(u_char *pkt_data)
 {
 	version=pkt_data[0] & 0x0f;
 	len=pkt_data[0] & 0xf0;
@@ -122,12 +121,12 @@ void Head_IP:analysis(u_char *pkt_data)
 	}
 }
 
-void Head_IP:my_print()
+void Head_IP::my_print()
 {
 
 }
 
-void Head_ICMP:analysis(u_char *pkt_data)
+void Head_ICMP::analysis(u_char *pkt_data)
 {
 	kind=pkt_data[0] & 0xff;
 	code=pkt_data[1] & 0xff;
@@ -135,12 +134,12 @@ void Head_ICMP:analysis(u_char *pkt_data)
 	next=NULL;  //ICMP就到头了
 }
 
-void Head_ICMP:my_print()
+void Head_ICMP::my_print()
 {
 
 }
 
-void Head_UDP:analysis(u_char *pkt_data)
+void Head_UDP::analysis(u_char *pkt_data)
 {
 	memcpy(S_Port,pkt_data,2);
 	memcpy(D_Port,pkt_data,2);
@@ -148,12 +147,12 @@ void Head_UDP:analysis(u_char *pkt_data)
 	next=NULL; //现在只分析道这一层，所以下一层设置为NULL
 }
 
-void Head_UDP:my_print()
+void Head_UDP::my_print()
 {
 
 }
 
-void Head_IGMP:analysis(u_char *pkt_data)
+void Head_IGMP::analysis(u_char *pkt_data)
 {
 	version=3;						//抓到的好像都是IGMPv3
 	type=pkt_data[0];
@@ -162,12 +161,12 @@ void Head_IGMP:analysis(u_char *pkt_data)
 	next=NULL;						//到头了
 }
 
-void Head_IGMP:my_print()
+void Head_IGMP::my_print()
 {
 
 }
 
-void Head_TCP:analysis(u_char *pkt_data)
+void Head_TCP::analysis(u_char *pkt_data)
 {
 	memcpy(S_Port,pkt_data,2);
 	memcpy(D_Port,pkt_data+2,2);
@@ -178,7 +177,7 @@ void Head_TCP:analysis(u_char *pkt_data)
 	next=NULL;
 }
 
-void Head_TCP:my_print()
+void Head_TCP::my_print()
 {
 
 }

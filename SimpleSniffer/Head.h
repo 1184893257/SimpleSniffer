@@ -4,8 +4,8 @@
 class Head_Super{
 public:
 	Head_Super* next;
-	virtual void analysis(u_char *pkt_data);
-	virtual void my_print();
+	virtual void analysis(u_char *pkt_data)=0;
+	virtual void my_print()=0;
 };
 
 class Head_Ethernet : public Head_Super{
