@@ -94,6 +94,10 @@ SOURCE=.\Head.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DevSelector.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\HexView.cpp
 # End Source File
 # Begin Source File
@@ -140,6 +144,10 @@ SOURCE=.\Thread.cpp
 # Begin Source File
 
 SOURCE=.\Head.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DevSelector.h
 # End Source File
 # Begin Source File
 

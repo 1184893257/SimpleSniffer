@@ -2,26 +2,28 @@
 
 [General Info]
 Version=1
-LastClass=CSimpleSnifferView
-LastTemplate=CEditView
+LastClass=CDevSelector
+LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "SimpleSniffer.h"
 LastPage=0
 
-ClassCount=8
+ClassCount=9
 Class1=CSimpleSnifferApp
 Class2=CSimpleSnifferDoc
 Class3=CSimpleSnifferView
 Class4=CMainFrame
 
-ResourceCount=3
+ResourceCount=4
 Resource1=IDR_MAINFRAME
 Resource2=IDD_ABOUTBOX
 Class5=CAboutDlg
 Class6=CInfoView
 Class7=CHexView
 Class8=CPackInfo
-Resource3=IDR_MAINFRAME
+Resource3=IDD_SIMPLESNIFFER_FORM
+Class9=CDevSelector
+Resource4=IDD_SELECT
 
 [CLS:CSimpleSnifferApp]
 Type=0
@@ -42,7 +44,7 @@ ImplementationFile=SimpleSnifferView.cpp
 Filter=D
 BaseClass=CFormView
 VirtualFilter=VWC
-LastObject=IDC_DEVS
+LastObject=CSimpleSnifferView
 
 
 [CLS:CMainFrame]
@@ -132,4 +134,19 @@ BaseClass=CEditView
 Filter=C
 VirtualFilter=VWC
 LastObject=CPackInfo
+
+[DLG:IDD_SELECT]
+Type=1
+Class=CDevSelector
+ControlCount=2
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+
+[CLS:CDevSelector]
+Type=0
+HeaderFile=DevSelector.h
+ImplementationFile=DevSelector.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=CDevSelector
 
