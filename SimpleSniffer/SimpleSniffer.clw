@@ -21,9 +21,9 @@ Class5=CAboutDlg
 Class6=CInfoView
 Class7=CHexView
 Class8=CPackInfo
-Resource3=IDR_MAINFRAME
+Resource3=IDD_SELECT
 Class9=CDevSelector
-Resource4=IDD_SELECT
+Resource4=IDR_MAINFRAME
 
 [CLS:CSimpleSnifferApp]
 Type=0
@@ -106,7 +106,9 @@ Type=1
 Class=CMainFrame
 Command1=ID_FILE_OPEN
 Command2=ID_FILE_SAVE
-CommandCount=2
+Command3=ID_SELECTSTART
+Command4=ID_ENDCATCH
+CommandCount=4
 
 [CLS:CInfoView]
 Type=0
