@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CDevSelector
+LastClass=CMainFrame
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "SimpleSniffer.h"
@@ -15,13 +15,13 @@ Class3=CSimpleSnifferView
 Class4=CMainFrame
 
 ResourceCount=4
-Resource1=IDR_MAINFRAME
-Resource2=IDD_ABOUTBOX
+Resource1=IDD_ABOUTBOX
+Resource2=IDD_SIMPLESNIFFER_FORM
 Class5=CAboutDlg
 Class6=CInfoView
 Class7=CHexView
 Class8=CPackInfo
-Resource3=IDD_SIMPLESNIFFER_FORM
+Resource3=IDR_MAINFRAME
 Class9=CDevSelector
 Resource4=IDD_SELECT
 
@@ -54,7 +54,7 @@ ImplementationFile=MainFrm.cpp
 Filter=T
 BaseClass=CFrameWnd
 VirtualFilter=fWC
-LastObject=ID_FILE_OPEN
+LastObject=ID_FILE_SAVE
 
 
 
@@ -138,9 +138,10 @@ LastObject=CPackInfo
 [DLG:IDD_SELECT]
 Type=1
 Class=CDevSelector
-ControlCount=2
+ControlCount=3
 Control1=IDOK,button,1342242817
 Control2=IDCANCEL,button,1342242816
+Control3=IDC_COMBO1,combobox,1344340226
 
 [CLS:CDevSelector]
 Type=0
