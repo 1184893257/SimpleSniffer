@@ -9,6 +9,7 @@
 #include "InfoView.h"
 #include "HexView.h"
 #include "PackInfo.h"
+#include "DevSelector.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -23,9 +24,8 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	//{{AFX_MSG_MAP(CMainFrame)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-		//    DO NOT EDIT what you see in these blocks of generated code !
 	ON_WM_CREATE()
+	ON_COMMAND(ID_SELECTSTART, OnSelectstart)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -131,4 +131,17 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
         return FALSE;
 
     return TRUE;
+}
+
+void CMainFrame::OnSelectstart() 
+{
+	// TODO: Add your command handler code here
+	CDevSelector selector;
+
+	if(IDOK == selector.DoModal() && theApp.m_curDev)
+	{
+		// 打开 tmp.pcap 接收包数据
+		theApp.m_dumper = pcap_dump_open(theApp.m_curDev, theApp.m_tempDumpFilePath);
+		theApp.startCatch(); // 启动线程抓包了
+	}
 }

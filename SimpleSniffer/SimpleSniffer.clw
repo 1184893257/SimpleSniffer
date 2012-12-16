@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CDevSelector
+LastClass=CMainFrame
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "SimpleSniffer.h"
@@ -151,6 +151,6 @@ HeaderFile=DevSelector.h
 ImplementationFile=DevSelector.cpp
 BaseClass=CDialog
 Filter=D
-LastObject=CDevSelector
+LastObject=ID_SELECTSTART
 VirtualFilter=dWC
 

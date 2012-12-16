@@ -15,6 +15,7 @@
 #include "resource.h"       // main symbols
 #include "Hex.h"
 #include "PackInfo.h"
+#include "Thread.h"
 #include <pcap.h>
 
 /////////////////////////////////////////////////////////////////////////////
@@ -33,6 +34,9 @@ public:
 	pcap_t *m_curDev;	// 当前 pcap_loop 监听的设备
 	CString m_tempDumpFilePath; // 临时存储 dumpfile 的文件路径
 	pcap_dumper_t *m_dumper; // 用于存储 dump 信息
+	BOOL m_iscatching;	// 正在抓包? 用于设置各按钮的状态
+
+	void startCatch();	// 启动线程抓包, 并设置"正在抓包"标志
 
 // Overrides
 	// ClassWizard generated virtual function overrides

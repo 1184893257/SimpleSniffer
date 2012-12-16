@@ -40,6 +40,8 @@ CSimpleSnifferApp::CSimpleSnifferApp()
 	char buf[1024];
 	GetCurrentDirectory(sizeof(buf),buf);
 	this->m_tempDumpFilePath.Format("%s\\tmp.pcap", buf);
+
+	this->m_iscatching = FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -104,6 +106,12 @@ BOOL CSimpleSnifferApp::InitInstance()
 	m_pMainWnd->UpdateWindow();
 
 	return TRUE;
+}
+
+void CSimpleSnifferApp::startCatch()
+{
+	this->m_iscatching = TRUE;
+	::AfxBeginThread(ThreadProc, new ThreadParam(m_curDev, m_dumper));
 }
 
 
