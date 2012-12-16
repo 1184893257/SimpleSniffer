@@ -96,7 +96,7 @@ void CSimpleSnifferDoc::Serialize(CArchive& ar)
 		char errbuf[PCAP_ERRBUF_SIZE];
 		theApp.m_curDev = pcap_fopen_offline(fp, errbuf);
 		theApp.m_dumper = NULL;
-		::AfxBeginThread(ThreadProc, new ThreadParam(theApp.m_curDev, theApp.m_dumper));
+		theApp.startCatch(); // 开始抓包, 还设置"正在抓包"标志
 	}
 }
 

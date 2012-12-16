@@ -13,6 +13,8 @@ class CMainFrame : public CFrameWnd
 {
 protected:
 	CSplitterWnd m_wndSplitter;// 用于创建分隔窗体
+public:
+	void OnTExit(int exitNum);// 处理抓包线程退出的事件
 	
 protected: // create from serialization only
 	CMainFrame();
@@ -50,6 +52,12 @@ protected:
 	//{{AFX_MSG(CMainFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnSelectstart();
+	afx_msg void OnEndcatch();
+	afx_msg void OnUpdateSelectstart(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateEndcatch(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFileSaveAs(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFileOpen(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

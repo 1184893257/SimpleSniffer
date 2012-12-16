@@ -15,13 +15,13 @@ Class3=CSimpleSnifferView
 Class4=CMainFrame
 
 ResourceCount=4
-Resource1=IDD_ABOUTBOX
-Resource2=IDD_SIMPLESNIFFER_FORM
+Resource1=IDD_SIMPLESNIFFER_FORM
+Resource2=IDR_MAINFRAME
 Class5=CAboutDlg
 Class6=CInfoView
 Class7=CHexView
 Class8=CPackInfo
-Resource3=IDR_MAINFRAME
+Resource3=IDD_ABOUTBOX
 Class9=CDevSelector
 Resource4=IDD_SELECT
 
@@ -54,7 +54,7 @@ ImplementationFile=MainFrm.cpp
 Filter=T
 BaseClass=CFrameWnd
 VirtualFilter=fWC
-LastObject=ID_FILE_SAVE
+LastObject=ID_FILE_OPEN
 
 
 
@@ -88,10 +88,9 @@ CommandCount=6
 [ACL:IDR_MAINFRAME]
 Type=1
 Class=CMainFrame
-Command1=ID_FILE_NEW
-Command2=ID_FILE_OPEN
-Command3=ID_FILE_SAVE
-CommandCount=3
+Command1=ID_FILE_OPEN
+Command2=ID_FILE_SAVE
+CommandCount=2
 
 [DLG:IDD_SIMPLESNIFFER_FORM]
 Type=1

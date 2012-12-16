@@ -26,6 +26,13 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	//{{AFX_MSG_MAP(CMainFrame)
 	ON_WM_CREATE()
 	ON_COMMAND(ID_SELECTSTART, OnSelectstart)
+	ON_COMMAND(ID_ENDCATCH, OnEndcatch)
+	ON_UPDATE_COMMAND_UI(ID_SELECTSTART, OnUpdateSelectstart)
+	ON_UPDATE_COMMAND_UI(ID_ENDCATCH, OnUpdateEndcatch)
+	ON_MESSAGE(WM_TEXIT, OnTExit)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_AS, OnUpdateFileSaveAs)
+	ON_UPDATE_COMMAND_UI(ID_FILE_OPEN, OnUpdateFileOpen)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -112,6 +119,8 @@ void CMainFrame::Dump(CDumpContext& dc) const
 BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 {
 	// TODO: Add your specialized code here and/or call the base class
+	theApp.m_control = this->GetSafeHwnd();
+
 	CRect rc;
 
     // 获取框架窗口客户区的CRect对象
@@ -144,4 +153,51 @@ void CMainFrame::OnSelectstart()
 		theApp.m_dumper = pcap_dump_open(theApp.m_curDev, theApp.m_tempDumpFilePath);
 		theApp.startCatch(); // 启动线程抓包了
 	}
+}
+
+void CMainFrame::OnEndcatch() 
+{
+	// TODO: Add your command handler code here
+	pcap_breakloop(theApp.m_curDev);
+}
+
+void CMainFrame::OnTExit(int exitNum)
+{
+	// 关闭 网卡设备 和 dump文件
+	pcap_close(theApp.m_curDev);
+	if(theApp.m_dumper)
+		pcap_dump_close(theApp.m_dumper);
+
+	// 现在开始不再是"正在抓包"了
+	theApp.m_iscatching = FALSE;
+}
+
+void CMainFrame::OnUpdateSelectstart(CCmdUI* pCmdUI) 
+{
+	// TODO: Add your command update UI handler code here
+	pCmdUI->Enable(!theApp.m_iscatching);
+}
+
+void CMainFrame::OnUpdateEndcatch(CCmdUI* pCmdUI) 
+{
+	// TODO: Add your command update UI handler code here
+	pCmdUI->Enable(theApp.m_iscatching);
+}
+
+void CMainFrame::OnUpdateFileSave(CCmdUI* pCmdUI) 
+{
+	// TODO: Add your command update UI handler code here
+	pCmdUI->Enable(!theApp.m_iscatching);	
+}
+
+void CMainFrame::OnUpdateFileSaveAs(CCmdUI* pCmdUI) 
+{
+	// TODO: Add your command update UI handler code here
+	pCmdUI->Enable(!theApp.m_iscatching);	
+}
+
+void CMainFrame::OnUpdateFileOpen(CCmdUI* pCmdUI) 
+{
+	// TODO: Add your command update UI handler code here
+	pCmdUI->Enable(!theApp.m_iscatching);	
 }
