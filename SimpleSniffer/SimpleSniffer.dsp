@@ -126,10 +126,6 @@ SOURCE=.\SimpleSnifferDoc.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\SimpleSnifferView.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\StdAfx.cpp
 # ADD CPP /Yc"stdafx.h"
 # End Source File
@@ -184,10 +180,6 @@ SOURCE=.\SimpleSniffer.h
 # Begin Source File
 
 SOURCE=.\SimpleSnifferDoc.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\SimpleSnifferView.h
 # End Source File
 # Begin Source File
 

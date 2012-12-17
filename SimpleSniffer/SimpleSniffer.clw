@@ -14,16 +14,15 @@ Class2=CSimpleSnifferDoc
 Class3=CSimpleSnifferView
 Class4=CMainFrame
 
-ResourceCount=4
-Resource1=IDD_SIMPLESNIFFER_FORM
+ResourceCount=3
+Resource1=IDD_ABOUTBOX
 Resource2=IDR_MAINFRAME
 Class5=CAboutDlg
 Class6=CInfoView
 Class7=CHexView
 Class8=CPackInfo
-Resource3=IDD_ABOUTBOX
 Class9=CDevSelector
-Resource4=IDD_SELECT
+Resource3=IDD_SELECT
 
 [CLS:CSimpleSnifferApp]
 Type=0
@@ -91,14 +90,6 @@ Class=CMainFrame
 Command1=ID_FILE_OPEN
 Command2=ID_FILE_SAVE
 CommandCount=2
-
-[DLG:IDD_SIMPLESNIFFER_FORM]
-Type=1
-Class=CSimpleSnifferView
-ControlCount=3
-Control1=IDC_START,button,1342242816
-Control2=IDC_STOP,button,1342242816
-Control3=IDC_DEVS,combobox,1344339970
 
 [TB:IDR_MAINFRAME]
 Type=1

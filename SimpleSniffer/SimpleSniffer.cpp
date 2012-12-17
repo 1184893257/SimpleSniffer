@@ -6,7 +6,7 @@
 
 #include "MainFrm.h"
 #include "SimpleSnifferDoc.h"
-#include "SimpleSnifferView.h"
+#include "InfoView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -90,7 +90,7 @@ BOOL CSimpleSnifferApp::InitInstance()
 		IDR_MAINFRAME,
 		RUNTIME_CLASS(CSimpleSnifferDoc),
 		RUNTIME_CLASS(CMainFrame),       // main SDI frame window
-		RUNTIME_CLASS(CSimpleSnifferView));
+		RUNTIME_CLASS(CInfoView));
 	AddDocTemplate(pDocTemplate);
 
 	// Parse command line for standard shell commands, DDE, file open
