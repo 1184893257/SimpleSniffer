@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CPackInfo
+LastClass=CSimpleSnifferView
 LastTemplate=CEditView
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "SimpleSniffer.h"
@@ -21,7 +21,7 @@ Class5=CAboutDlg
 Class6=CInfoView
 Class7=CHexView
 Class8=CPackInfo
-Resource3=IDD_SIMPLESNIFFER_FORM
+Resource3=IDR_MAINFRAME
 
 [CLS:CSimpleSnifferApp]
 Type=0
@@ -42,7 +42,7 @@ ImplementationFile=SimpleSnifferView.cpp
 Filter=D
 BaseClass=CFormView
 VirtualFilter=VWC
-LastObject=CSimpleSnifferView
+LastObject=IDC_DEVS
 
 
 [CLS:CMainFrame]
@@ -52,7 +52,7 @@ ImplementationFile=MainFrm.cpp
 Filter=T
 BaseClass=CFrameWnd
 VirtualFilter=fWC
-LastObject=CMainFrame
+LastObject=ID_FILE_OPEN
 
 
 
@@ -75,23 +75,13 @@ Control4=IDOK,button,1342373889
 [MNU:IDR_MAINFRAME]
 Type=1
 Class=CMainFrame
-Command1=ID_FILE_NEW
-Command2=ID_FILE_OPEN
-Command3=ID_FILE_SAVE
-Command4=ID_FILE_SAVE_AS
-Command5=ID_FILE_PRINT
-Command6=ID_FILE_PRINT_PREVIEW
-Command7=ID_FILE_PRINT_SETUP
-Command8=ID_FILE_MRU_FILE1
-Command9=ID_APP_EXIT
-Command10=ID_EDIT_UNDO
-Command11=ID_EDIT_CUT
-Command12=ID_EDIT_COPY
-Command13=ID_EDIT_PASTE
-Command14=ID_VIEW_TOOLBAR
-Command15=ID_VIEW_STATUS_BAR
-Command16=ID_APP_ABOUT
-CommandCount=16
+Command1=ID_FILE_OPEN
+Command2=ID_FILE_SAVE
+Command3=ID_FILE_SAVE_AS
+Command4=ID_FILE_MRU_FILE1
+Command5=ID_APP_EXIT
+Command6=ID_APP_ABOUT
+CommandCount=6
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -99,18 +89,7 @@ Class=CMainFrame
 Command1=ID_FILE_NEW
 Command2=ID_FILE_OPEN
 Command3=ID_FILE_SAVE
-Command4=ID_FILE_PRINT
-Command5=ID_EDIT_UNDO
-Command6=ID_EDIT_CUT
-Command7=ID_EDIT_COPY
-Command8=ID_EDIT_PASTE
-Command9=ID_EDIT_UNDO
-Command10=ID_EDIT_CUT
-Command11=ID_EDIT_COPY
-Command12=ID_EDIT_PASTE
-Command13=ID_NEXT_PANE
-Command14=ID_PREV_PANE
-CommandCount=14
+CommandCount=3
 
 [DLG:IDD_SIMPLESNIFFER_FORM]
 Type=1
@@ -122,16 +101,10 @@ Control3=IDC_DEVS,combobox,1344339970
 
 [TB:IDR_MAINFRAME]
 Type=1
-Class=?
-Command1=ID_FILE_NEW
-Command2=ID_FILE_OPEN
-Command3=ID_FILE_SAVE
-Command4=ID_EDIT_CUT
-Command5=ID_EDIT_COPY
-Command6=ID_EDIT_PASTE
-Command7=ID_FILE_PRINT
-Command8=ID_APP_ABOUT
-CommandCount=8
+Class=CMainFrame
+Command1=ID_FILE_OPEN
+Command2=ID_FILE_SAVE
+CommandCount=2
 
 [CLS:CInfoView]
 Type=0
