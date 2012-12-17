@@ -16,13 +16,13 @@ Class4=CMainFrame
 
 ResourceCount=3
 Resource1=IDD_ABOUTBOX
-Resource2=IDR_MAINFRAME
+Resource2=IDD_SELECT
 Class5=CAboutDlg
 Class6=CInfoView
 Class7=CHexView
 Class8=CPackInfo
 Class9=CDevSelector
-Resource3=IDD_SELECT
+Resource3=IDR_MAINFRAME
 
 [CLS:CSimpleSnifferApp]
 Type=0
@@ -94,9 +94,9 @@ CommandCount=2
 [TB:IDR_MAINFRAME]
 Type=1
 Class=CMainFrame
-Command1=ID_FILE_OPEN
-Command2=ID_FILE_SAVE
-Command3=ID_SELECTSTART
+Command1=ID_SELECTSTART
+Command2=ID_FILE_OPEN
+Command3=ID_FILE_SAVE
 Command4=ID_ENDCATCH
 CommandCount=4
 
