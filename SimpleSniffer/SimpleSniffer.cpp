@@ -47,6 +47,10 @@ CSimpleSnifferApp::CSimpleSnifferApp()
 
 CSimpleSnifferApp theApp;
 int count=1;
+unsigned char m_SIP[4];
+unsigned char m_DIP[4];
+int packet_kind=0;						//用于记录数据包分析到的最高层类型，0:Ethernet 1:802.3 2:ARP 3:IP 4:ICMP 5:UDP 6:IGMP 7:TCP
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CSimpleSnifferApp initialization

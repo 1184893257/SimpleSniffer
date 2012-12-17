@@ -15,8 +15,8 @@ Class3=CSimpleSnifferView
 Class4=CMainFrame
 
 ResourceCount=3
-Resource1=IDD_ABOUTBOX
-Resource2=IDR_MAINFRAME
+Resource1=IDR_MAINFRAME
+Resource2=IDD_ABOUTBOX
 Class5=CAboutDlg
 Class6=CInfoView
 Class7=CHexView
