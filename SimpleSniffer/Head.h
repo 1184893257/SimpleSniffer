@@ -85,4 +85,14 @@ public:
 	void analysis(u_char *pkt_data);
 	CString my_print();
 };
+
+class Head_IPv6 : public Head_Super{
+public:
+	int version;
+	int protocol;
+	u_char S_IPv6[16];
+	u_char D_IPv6[16];
+	void analysis(u_char *pkt_data);
+	CString my_print();
+};
 #endif

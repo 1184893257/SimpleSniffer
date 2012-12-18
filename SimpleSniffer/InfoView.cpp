@@ -17,6 +17,9 @@ extern int count;
 extern int packet_kind;
 extern unsigned char m_SIP[4];
 extern unsigned char m_DIP[4];
+extern unsigned char m_SIPv6[16];
+extern unsigned char m_DIPv6[16];
+extern int ipv6;	
 
 /////////////////////////////////////////////////////////////////////////////
 // CInfoView
@@ -118,9 +121,16 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	}
 	
 	m_info.push_back(temp_info);
-	
-	m_s_ip.Format("%u.%u.%u.%u",m_SIP[0],m_SIP[1],m_SIP[2],m_SIP[3]);
-	m_d_ip.Format("%u.%u.%u.%u",m_DIP[0],m_DIP[1],m_DIP[2],m_DIP[3]);
+	if(ipv6==0)
+	{
+		m_s_ip.Format("%u.%u.%u.%u",m_SIP[0],m_SIP[1],m_SIP[2],m_SIP[3]);
+		m_d_ip.Format("%u.%u.%u.%u",m_DIP[0],m_DIP[1],m_DIP[2],m_DIP[3]);
+	}
+	else
+	{
+		m_s_ip.Format("%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X",m_SIPv6[0],m_SIPv6[1],m_SIPv6[2],m_SIPv6[3],m_SIPv6[4],m_SIPv6[5],m_SIPv6[6],m_SIPv6[7],m_SIPv6[8],m_SIPv6[9],m_SIPv6[10],m_SIPv6[11],m_SIPv6[12],m_SIPv6[13],m_SIPv6[14],m_SIPv6[15]);
+		m_d_ip.Format("%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X",m_DIPv6[0],m_DIPv6[1],m_DIPv6[2],m_DIPv6[3],m_DIPv6[4],m_DIPv6[5],m_DIPv6[6],m_DIPv6[7],m_DIPv6[8],m_DIPv6[9],m_DIPv6[10],m_DIPv6[11],m_DIPv6[12],m_DIPv6[13],m_DIPv6[14],m_DIPv6[15]);
+	}
 	switch(packet_kind){
 	case 0:m_packetkind="Ethernet";break;
 	case 1:m_packetkind="802.3";break;
@@ -130,6 +140,7 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	case 5:m_packetkind="UDP";break;
 	case 6:m_packetkind="IGMPv3";break;
 	case 7:m_packetkind="TCP";break;
+	case 8:m_packetkind="IPv6";break;
 	}
 	//在列表中显示
 	CListCtrl& ctr = this->GetListCtrl();
@@ -181,8 +192,8 @@ void CInfoView::OnInitialUpdate()
 	m_list.InsertColumn( 6, "802.3",LVCFMT_CENTER,50);
 
 	//第二步详细分析显示
-	m_list.InsertColumn( 7,"源IP",LVCFMT_CENTER, 130 );
-	m_list.InsertColumn( 8,"目的IP",LVCFMT_CENTER, 130 );
+	m_list.InsertColumn( 7,"源IP",LVCFMT_CENTER, 180 );
+	m_list.InsertColumn( 8,"目的IP",LVCFMT_CENTER, 180 );
 	m_list.InsertColumn( 9,"包类型",LVCFMT_CENTER, 130 );
 }
 
