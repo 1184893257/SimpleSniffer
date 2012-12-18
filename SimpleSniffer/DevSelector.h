@@ -7,11 +7,20 @@
 // DevSelector.h : header file
 //
 
+#include <vector>
+using namespace std;
+
 /////////////////////////////////////////////////////////////////////////////
 // CDevSelector dialog
 
 class CDevSelector : public CDialog
 {
+protected:
+	vector<pcap_if_t *> m_devsArray;// 设备列表转换过来的数组
+	void InitWinPcap();
+public:
+	~CDevSelector();
+
 // Construction
 public:
 	CDevSelector(CWnd* pParent = NULL);   // standard constructor
@@ -19,7 +28,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CDevSelector)
 	enum { IDD = IDD_SELECT };
-		// NOTE: the ClassWizard will add data members here
+	CComboBox	m_devsName;
 	//}}AFX_DATA
 
 
@@ -35,7 +44,8 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(CDevSelector)
-		// NOTE: the ClassWizard will add member functions here
+	virtual BOOL OnInitDialog();
+	virtual void OnOK();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
