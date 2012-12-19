@@ -109,14 +109,14 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 
 	//第二步详细分析
 	
-	if(m_cntl.Compare("03")==0)
+	if(m_kind.Compare("0800")==0 || m_kind.Compare("0806")==0 || m_kind.Compare("86DD")==0)
 	{
-		temp_info.m_Head=new Head_802_3();
+		temp_info.m_Head=new Head_Ethernet();
 		temp_info.m_Head->analysis(pkt_data);
 	}
 	else
 	{
-		temp_info.m_Head=new Head_Ethernet();
+		temp_info.m_Head=new Head_802_3();
 		temp_info.m_Head->analysis(pkt_data);
 	}
 	
@@ -141,6 +141,10 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	case 6:m_packetkind="IGMPv3";break;
 	case 7:m_packetkind="TCP";break;
 	case 8:m_packetkind="IPv6";break;
+	case 9:m_packetkind="OSPF";break;
+	case 10:m_packetkind="DNS";break;
+	case 11:m_packetkind="HTTP";break;
+	case 12:m_packetkind="FTP";break;
 	}
 	//在列表中显示
 	CListCtrl& ctr = this->GetListCtrl();

@@ -95,4 +95,34 @@ public:
 	void analysis(u_char *pkt_data);
 	CString my_print();
 };
+
+class Head_OSPF : public Head_Super{
+public:
+	int version;
+	int type;
+	u_char Router_ID[4];
+	u_char Area_ID[4];
+	void analysis(u_char *pkt_data);
+	CString my_print();
+};
+
+class Head_DNS : public Head_Super{
+public:
+	u_char ID[2];
+	int Question;
+	void analysis(u_char *pkt_data);
+	CString my_print();
+};
+
+class Head_HTTP : public Head_Super{
+public:
+	void analysis(u_char *pkt_data);
+	CString my_print();
+};
+
+class Head_FTP : public Head_Super{
+public:
+	void analysis(u_char *pkt_data);
+	CString my_print();
+};
 #endif

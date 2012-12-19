@@ -222,10 +222,20 @@ CString Head_ICMP::my_print()
 void Head_UDP::analysis(u_char *pkt_data)
 {
 	memcpy(S_Port,pkt_data,2);
-	memcpy(D_Port,pkt_data,2);
-
-	next=NULL; //现在只分析道这一层，所以下一层设置为NULL
-	packet_kind=5;
+	memcpy(D_Port,pkt_data+2,2);
+	
+	int sPort=S_Port[0]<<8 | S_Port[1];
+	int dPort=D_Port[0]<<8 | D_Port[1];
+	if(sPort == 53 || dPort == 53)
+	{
+		next=new Head_DNS();
+		next->analysis(pkt_data+8);
+	}
+	else
+	{
+		next=NULL; 
+		packet_kind=5;
+	}
 }
 
 CString Head_UDP::my_print()
@@ -273,9 +283,25 @@ void Head_TCP::analysis(u_char *pkt_data)
 	memcpy(SYN,pkt_data+4,4);
 	memcpy(ACK,pkt_data+8,4);
 	memcpy(Size_Window,pkt_data+14,2);
+	
+	int sPort=S_Port[0]<<8 | S_Port[1];
+	int dPort=D_Port[0]<<8 | D_Port[1];
 
-	next=NULL;
-	packet_kind=7;
+	if(sPort == 80 || dPort == 80)
+	{
+		next=new Head_HTTP();
+		next->analysis(pkt_data+20);
+	}
+	else if(sPort == 21 || dPort == 21)
+	{
+		next=new Head_FTP();
+		next->analysis(pkt_data+20);
+	}
+	else
+	{
+		next=NULL;
+		packet_kind=7;
+	}
 }
 
 CString Head_TCP::my_print()
@@ -297,8 +323,8 @@ CString Head_TCP::my_print()
 
 	m_SPort.Format("源端口: %d\r\n",sPort);
 	m_DPort.Format("目的端口: %d\r\n",dPort);
-	m_SYN.Format("SYN: %d\r\n",mSYN);
-	m_ACK.Format("ACK: %d\r\n",mACK);
+	//m_SYN.Format("SYN: %d\r\n",mSYN);
+	//m_ACK.Format("ACK: %d\r\n",mACK);
 	m_Size_Window.Format("窗口大小: %d\r\n",mSize_Window);
 
 	return "TCP首部\r\n"+m_SPort+m_DPort+m_SYN+m_ACK+m_Size_Window;
@@ -331,6 +357,16 @@ void Head_IPv6 :: analysis(u_char *pkt_data)
 		next= new Head_ICMP();
 		next->analysis(pkt_data+40);
 	}
+	else if(protocol == 2)
+	{
+		next=new Head_IGMP();
+		next->analysis(pkt_data+40);
+	}
+	else if(protocol ==89)
+	{
+		next=new Head_OSPF();
+		next->analysis(pkt_data+40);
+	}
 	else
 	{
 		next=NULL;
@@ -351,4 +387,72 @@ CString Head_IPv6:: my_print()
 	m_DIP.Format("目的地址:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X\r\n",D_IPv6[0],D_IPv6[1],D_IPv6[2],D_IPv6[3],D_IPv6[4],D_IPv6[5],D_IPv6[6],D_IPv6[7],D_IPv6[8],D_IPv6[9],D_IPv6[10],D_IPv6[11],D_IPv6[12],D_IPv6[13],D_IPv6[14],D_IPv6[15]);
 	
 	return "IPv6首部\r\n"+m_version+m_protocol+m_SIP+m_DIP;
+}
+
+void Head_OSPF::analysis(u_char *pkt_data)
+{
+	version=pkt_data[0] & 0xff;
+	type=pkt_data[1] & 0xff;
+	memcpy(Router_ID,pkt_data+4,4);
+	memcpy(Area_ID,pkt_data+8,4);
+
+	next=NULL;
+	packet_kind=9;
+}
+
+CString Head_OSPF::my_print()
+{
+	CString m_version;
+	CString m_type;
+	CString m_RouterID;
+	CString m_AreaID;
+
+	m_version.Format("版本: %d\r\n",version);
+	m_type.Format("类型: %d\r\n",type);
+	m_RouterID.Format("路由器ID: %u.%u.%u.%u\r\n",Router_ID[0],Router_ID[1],Router_ID[2],Router_ID[3]);
+	m_AreaID.Format("区域ID: %u.%u.%u.%u\r\n",Area_ID[0],Area_ID[1],Area_ID[2],Area_ID[3]);
+
+	return "OSPF首部\r\n"+m_version+m_type+m_RouterID+m_AreaID;
+}
+
+void Head_DNS::analysis(u_char *pkt_data)
+{
+	memcpy(ID,pkt_data,2);
+	Question=pkt_data[0]<<8 ||pkt_data[1];
+
+	next=NULL;
+	packet_kind=10;
+}
+
+CString Head_DNS::my_print()
+{
+	CString m_ID;
+	CString m_Question;
+
+	m_ID.Format("标识: 0x%02x%02x\r\n",ID[0],ID[1]);
+	m_Question.Format("问题数: %d\r\n",Question);
+
+	return "DNS首部\r\n"+m_ID+m_Question;
+}
+
+void Head_HTTP::analysis(u_char *pkt_data)
+{
+	next=NULL;
+	packet_kind=11;
+}
+
+CString Head_HTTP::my_print()
+{
+	return "HTTP首部\r\n";
+}
+
+void Head_FTP::analysis(u_char *pkt_data)
+{
+	next=NULL;
+	packet_kind=12;
+}
+
+CString Head_FTP::my_print()
+{
+	return "FTP首部\r\n";
 }
