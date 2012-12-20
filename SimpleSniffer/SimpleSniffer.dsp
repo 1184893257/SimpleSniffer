@@ -87,16 +87,12 @@ LINK32=link.exe
 
 # Name "SimpleSniffer - Win32 Release"
 # Name "SimpleSniffer - Win32 Debug"
-# Begin Group "Source Files"
+# Begin Group "View"
 
-# PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\Head.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\DevSelector.cpp
+SOURCE=.\Hex.h
 # End Source File
 # Begin Source File
 
@@ -104,60 +100,11 @@ SOURCE=.\HexView.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\InfoView.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\MainFrm.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\PackInfo.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\SimpleSniffer.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\SimpleSniffer.rc
-# End Source File
-# Begin Source File
-
-SOURCE=.\SimpleSnifferDoc.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\StdAfx.cpp
-# ADD CPP /Yc"stdafx.h"
-# End Source File
-# Begin Source File
-
-SOURCE=.\Thread.cpp
-# End Source File
-# End Group
-# Begin Group "Header Files"
-
-# PROP Default_Filter "h;hpp;hxx;hm;inl"
-# Begin Source File
-
-SOURCE=.\Head.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\DevSelector.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\Hex.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\HexView.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\Info.h
+SOURCE=.\InfoView.cpp
 # End Source File
 # Begin Source File
 
@@ -165,15 +112,47 @@ SOURCE=.\InfoView.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\MainFrm.h
+SOURCE=.\PackInfo.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\PackInfo.h
 # End Source File
+# End Group
+# Begin Group "Thread"
+
+# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\Resource.h
+SOURCE=.\Thread.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Thread.h
+# End Source File
+# End Group
+# Begin Group "Control"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\DevSelector.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DevSelector.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MainFrm.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MainFrm.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SimpleSniffer.cpp
 # End Source File
 # Begin Source File
 
@@ -181,23 +160,43 @@ SOURCE=.\SimpleSniffer.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\SimpleSnifferDoc.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\SimpleSnifferDoc.h
 # End Source File
+# End Group
+# Begin Group "Analyse"
+
+# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\StdAfx.h
+SOURCE=.\Head.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Thread.h
+SOURCE=.\Head.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Info.h
 # End Source File
 # End Group
-# Begin Group "Resource Files"
+# Begin Group "Resources"
 
-# PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\Resource.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\res\SimpleSniffer.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\SimpleSniffer.rc
 # End Source File
 # Begin Source File
 
@@ -206,6 +205,15 @@ SOURCE=.\res\SimpleSniffer.rc2
 # Begin Source File
 
 SOURCE=.\res\SimpleSnifferDoc.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\StdAfx.cpp
+# ADD CPP /Yc"stdafx.h"
+# End Source File
+# Begin Source File
+
+SOURCE=.\StdAfx.h
 # End Source File
 # Begin Source File
 
