@@ -36,8 +36,6 @@ END_MESSAGE_MAP()
 // CSimpleSnifferApp 构造的时候初始化 tmp.pcap 文件的路径, 设置"正在抓包"标志为 FALSE
 CSimpleSnifferApp::CSimpleSnifferApp()
 {
-	// TODO: add construction code here,
-	// Place all significant initialization in InitInstance
 	char buf[1024];
 	GetCurrentDirectory(sizeof(buf),buf);
 	this->m_tempDumpFilePath.Format("%s\\tmp.pcap", buf);
@@ -77,8 +75,6 @@ BOOL CSimpleSnifferApp::InitInstance()
 #endif
 
 	// Change the registry key under which our settings are stored.
-	// TODO: You should modify this string to be something appropriate
-	// such as the name of your company or organization.
 	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
 
 	LoadStdProfileSettings();  // Load standard INI file options (including MRU)

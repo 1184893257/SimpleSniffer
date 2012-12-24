@@ -40,7 +40,6 @@ END_MESSAGE_MAP()
 void CHexView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: add draw code here
 }
 
 /////////////////////////////////////////////////////////////////////////////

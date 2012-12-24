@@ -49,7 +49,6 @@ END_MESSAGE_MAP()
 void CInfoView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: add draw code here
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -209,9 +208,7 @@ void CInfoView::OnInitialUpdate()
 
 // 点击列表中某行后, 显示它的包类型、16进制形式的包数据
 void CInfoView::OnClick(NMHDR* pNMHDR, LRESULT* pResult) 
-{
-	// TODO: Add your control notification handler code here
-	
+{	
 	NMLISTVIEW* pList = (NMLISTVIEW*)pNMHDR;
 	CString m_message;						//初始化就是空的
 	Head_Super* head_temp;

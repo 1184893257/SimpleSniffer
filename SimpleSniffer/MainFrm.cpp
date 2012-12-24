@@ -48,8 +48,6 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	// TODO: add member initialization code here
-	
 }
 
 CMainFrame::~CMainFrame()
@@ -77,8 +75,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 
-	// TODO: Delete these three lines if you don't want the toolbar to
-	//  be dockable
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
@@ -90,9 +86,6 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if( !CFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
-	// TODO: Modify the Window class or styles here by modifying
-	//  the CREATESTRUCT cs
-
 	return TRUE;
 }
 
@@ -142,7 +135,6 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 // 点击了"开始"工具栏按钮, 弹出 CDevSelector 选中设备进行抓包
 void CMainFrame::OnSelectstart() 
 {
-	// TODO: Add your command handler code here
 	CDevSelector selector;
 
 	if(IDOK == selector.DoModal() && theApp.m_curDev)
@@ -156,7 +148,6 @@ void CMainFrame::OnSelectstart()
 // 点击了"终止"工具栏按钮, pcap_breakloop 正在监听的设备
 void CMainFrame::OnEndcatch() 
 {
-	// TODO: Add your command handler code here
 	pcap_breakloop(theApp.m_curDev);
 }
 
@@ -175,34 +166,29 @@ void CMainFrame::OnTExit(int exitNum)
 // "开始"按钮的使能控制
 void CMainFrame::OnUpdateSelectstart(CCmdUI* pCmdUI) 
 {
-	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(!theApp.m_iscatching);
 }
 
 // "终止"按钮的使能控制
 void CMainFrame::OnUpdateEndcatch(CCmdUI* pCmdUI) 
 {
-	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(theApp.m_iscatching);
 }
 
 // "保存"按钮的使能控制
 void CMainFrame::OnUpdateFileSave(CCmdUI* pCmdUI) 
 {
-	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(!theApp.m_iscatching);	
 }
 
 // "另存为"按钮的使能控制
 void CMainFrame::OnUpdateFileSaveAs(CCmdUI* pCmdUI) 
 {
-	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(!theApp.m_iscatching);	
 }
 
 // "打开"按钮的使能控制
 void CMainFrame::OnUpdateFileOpen(CCmdUI* pCmdUI) 
 {
-	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(!theApp.m_iscatching);	
 }

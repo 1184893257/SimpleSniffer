@@ -78,7 +78,6 @@ BOOL CDevSelector::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO: Add extra initialization here
 	this->InitWinPcap();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -88,7 +87,6 @@ BOOL CDevSelector::OnInitDialog()
 // 点击了对话框的"确定"按钮, pcap_open 选中的设备
 void CDevSelector::OnOK() 
 {
-	// TODO: Add extra validation here
 	char errbuf[PCAP_ERRBUF_SIZE];
 
 	pcap_if_t *d = this->m_devsArray[this->m_devsName.GetCurSel()];
