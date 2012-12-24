@@ -289,6 +289,12 @@ BEGIN
     ID_FILE_MRU_FILE16      "打开该文档"
 END
 
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_SELECTSTART          "选择设备抓包\n开始"
+    ID_ENDCATCH             "终止抓包线程\n终止"
+END
+
 #endif    // Chinese (中国) resources
 /////////////////////////////////////////////////////////////////////////////
 
