@@ -1,10 +1,17 @@
 #ifndef __MY_HEAD__
 #define __MY_HEAD__
 #include <pcap.h>
+
+// 所有包都派生自这个类, 解析包
 class Head_Super{
 public:
+	// 指向更高层协议
 	Head_Super* next;
+
+	// 从 pkt_data 中抽取出这层协议PDU的信息
 	virtual void analysis(u_char *pkt_data)=0;
+
+	// 将这层协议的详细信息以一个字符串表现出来
 	virtual CString my_print()=0;
 };
 

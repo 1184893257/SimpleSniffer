@@ -13,7 +13,7 @@
 class CHexView : public CEditView, public Hex
 {
 protected:
-	CFont m_Font;
+	CFont m_Font;		// 用于存储字体
 protected:
 	CHexView();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CHexView)
@@ -23,6 +23,7 @@ public:
 
 // Operations
 public:
+	// 实现十六进制的显示, 是 Hex 的纯虚函数
 	void ShowHexText(char *data, int len);
 
 // Overrides

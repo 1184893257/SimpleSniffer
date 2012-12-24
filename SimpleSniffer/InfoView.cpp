@@ -70,6 +70,7 @@ void CInfoView::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CInfoView message handlers
 
+// 处理抓包线程抓到包的事件, pkt_data 是抓到的包
 void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 {
 	struct tm *ltime;
@@ -167,6 +168,7 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	this->GetDocument()->SetModifiedFlag();
 }
 
+// CInfoView 继承自列表视图(CListView), 这里设置好各个列
 void CInfoView::OnInitialUpdate() 
 {
 	CListView::OnInitialUpdate();
@@ -205,6 +207,7 @@ void CInfoView::OnInitialUpdate()
 	m_list.InsertColumn( 5,"包类型",LVCFMT_CENTER, 150 );
 }
 
+// 点击列表中某行后, 显示它的包类型、16进制形式的包数据
 void CInfoView::OnClick(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	// TODO: Add your control notification handler code here
@@ -216,7 +219,6 @@ void CInfoView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
     if(iItem != -1)
     {
         theApp.m_editor->ShowHexText((char*)m_info[iItem].pkt_data, m_info[iItem].header->len);
-		//theApp.m_packInfo->ShowPackInfo("第1行\r\n第2行");
 		head_temp=m_info[iItem].m_Head;
 		while(head_temp!=NULL)
 		{

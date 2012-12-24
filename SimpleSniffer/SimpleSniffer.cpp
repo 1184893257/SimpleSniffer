@@ -33,6 +33,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CSimpleSnifferApp construction
 
+// CSimpleSnifferApp 构造的时候初始化 tmp.pcap 文件的路径, 设置"正在抓包"标志为 FALSE
 CSimpleSnifferApp::CSimpleSnifferApp()
 {
 	// TODO: add construction code here,
@@ -108,10 +109,11 @@ BOOL CSimpleSnifferApp::InitInstance()
 	return TRUE;
 }
 
+// 启动线程, 开始抓包
 void CSimpleSnifferApp::startCatch()
 {
-	this->m_iscatching = TRUE;
-	::AfxBeginThread(ThreadProc, new ThreadParam(m_curDev, m_dumper));
+	this->m_iscatching = TRUE;	// 设置"正在抓包"标志为 TRUE
+	::AfxBeginThread(ThreadProc, new ThreadParam(m_curDev, m_dumper));// 启动抓包线程
 }
 
 

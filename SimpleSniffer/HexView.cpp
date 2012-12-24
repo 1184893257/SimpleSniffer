@@ -18,6 +18,8 @@ IMPLEMENT_DYNCREATE(CHexView, CEditView)
 
 CHexView::CHexView()
 {
+	// CHexView 用于显示十六进制信息
+	// 初始化 theApp 中的 Hex 指针为 this
 	theApp.m_editor = dynamic_cast<Hex*>(this);
 }
 
@@ -59,6 +61,7 @@ void CHexView::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CHexView message handlers
 
+// 实现十六进制的显示, 是 Hex 的纯虚函数
 void CHexView::ShowHexText(char *data, int len)
 {
 	CString result; // 存储最终结果
@@ -106,6 +109,7 @@ void CHexView::ShowHexText(char *data, int len)
 	this->SetWindowText(result);
 }
 
+// 初始化, 设置编辑区只读、更改字体
 void CHexView::OnInitialUpdate() 
 {
 	CEditView::OnInitialUpdate();

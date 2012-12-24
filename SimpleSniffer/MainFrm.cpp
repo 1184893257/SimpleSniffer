@@ -115,10 +115,10 @@ void CMainFrame::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
 
+// 在这里创建3行1列分割窗体
 BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 {
-	// TODO: Add your specialized code here and/or call the base class
-	theApp.m_control = this->GetSafeHwnd();
+	theApp.m_control = this->GetSafeHwnd();// CMainFrame 控制线程启动和终止
 
 	CRect rc;
 
@@ -139,6 +139,7 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
     return TRUE;
 }
 
+// 点击了"开始"工具栏按钮, 弹出 CDevSelector 选中设备进行抓包
 void CMainFrame::OnSelectstart() 
 {
 	// TODO: Add your command handler code here
@@ -152,12 +153,14 @@ void CMainFrame::OnSelectstart()
 	}
 }
 
+// 点击了"终止"工具栏按钮, pcap_breakloop 正在监听的设备
 void CMainFrame::OnEndcatch() 
 {
 	// TODO: Add your command handler code here
 	pcap_breakloop(theApp.m_curDev);
 }
 
+// 得到线程退出前发出的 WM_TEXIT 消息, 可以安全地释放各种资源了
 void CMainFrame::OnTExit(int exitNum)
 {
 	// 关闭 网卡设备 和 dump文件
@@ -169,30 +172,35 @@ void CMainFrame::OnTExit(int exitNum)
 	theApp.m_iscatching = FALSE;
 }
 
+// "开始"按钮的使能控制
 void CMainFrame::OnUpdateSelectstart(CCmdUI* pCmdUI) 
 {
 	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(!theApp.m_iscatching);
 }
 
+// "终止"按钮的使能控制
 void CMainFrame::OnUpdateEndcatch(CCmdUI* pCmdUI) 
 {
 	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(theApp.m_iscatching);
 }
 
+// "保存"按钮的使能控制
 void CMainFrame::OnUpdateFileSave(CCmdUI* pCmdUI) 
 {
 	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(!theApp.m_iscatching);	
 }
 
+// "另存为"按钮的使能控制
 void CMainFrame::OnUpdateFileSaveAs(CCmdUI* pCmdUI) 
 {
 	// TODO: Add your command update UI handler code here
 	pCmdUI->Enable(!theApp.m_iscatching);	
 }
 
+// "打开"按钮的使能控制
 void CMainFrame::OnUpdateFileOpen(CCmdUI* pCmdUI) 
 {
 	// TODO: Add your command update UI handler code here

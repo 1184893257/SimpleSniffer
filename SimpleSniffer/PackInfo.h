@@ -13,6 +13,7 @@
 class CPackInfo : public CEditView
 {
 public:
+	// 在编辑区中显示一段字符串
 	void ShowPackInfo(const CString& info);
 
 protected:

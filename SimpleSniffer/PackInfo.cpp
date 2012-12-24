@@ -18,6 +18,7 @@ IMPLEMENT_DYNCREATE(CPackInfo, CEditView)
 
 CPackInfo::CPackInfo()
 {
+	// CPackInfo 是用来显示抓到的包的各层PDU详细信息的
 	theApp.m_packInfo = this;
 }
 
@@ -59,6 +60,8 @@ void CPackInfo::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CPackInfo message handlers
 
+
+// 初始化中设置编辑区为只读
 void CPackInfo::OnInitialUpdate()
 {
 	CEditView::OnInitialUpdate();
@@ -72,6 +75,7 @@ void CPackInfo::OnInitialUpdate()
 	control.SetReadOnly();// 编辑区只读, 不允许手动更改
 }
 
+// 在编辑区中显示一段字符串
 void CPackInfo::ShowPackInfo(const CString& info)
 {
 	this->SetWindowText(info);

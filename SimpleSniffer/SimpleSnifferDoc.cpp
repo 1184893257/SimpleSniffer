@@ -62,6 +62,7 @@ void copyFile(CFile *src, CFile *dest)
 /////////////////////////////////////////////////////////////////////////////
 // CSimpleSnifferDoc serialization
 
+//串行化中实现 保存/打开 逻辑
 void CSimpleSnifferDoc::Serialize(CArchive& ar)
 {
 	CFile *f = ar.GetFile();

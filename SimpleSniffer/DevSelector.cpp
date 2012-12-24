@@ -41,6 +41,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CDevSelector message handlers
 
+// CDevSelector 初始化的时候获取设备列表
 void CDevSelector::InitWinPcap()
 {
 	pcap_if_t *alldevs;
@@ -63,6 +64,7 @@ void CDevSelector::InitWinPcap()
 	this->m_devsName.SetCurSel(0);
 }
 
+// 析构的时候释放设备列表
 CDevSelector::~CDevSelector()
 {
 	// 如果获取设备失败, m_devArray 为空, 释放就会出问题
@@ -71,6 +73,7 @@ CDevSelector::~CDevSelector()
 		pcap_freealldevs(*(this->m_devsArray.begin()));
 }
 
+// 初始化
 BOOL CDevSelector::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
@@ -82,6 +85,7 @@ BOOL CDevSelector::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
+// 点击了对话框的"确定"按钮, pcap_open 选中的设备
 void CDevSelector::OnOK() 
 {
 	// TODO: Add extra validation here

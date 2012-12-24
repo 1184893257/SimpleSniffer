@@ -17,7 +17,7 @@ class CDevSelector : public CDialog
 {
 protected:
 	vector<pcap_if_t *> m_devsArray;// 设备列表转换过来的数组
-	void InitWinPcap();
+	void InitWinPcap();// CDevSelector 初始化的时候获取设备列表
 public:
 	~CDevSelector();
 
