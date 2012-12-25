@@ -11,6 +11,8 @@
 #define IDC_STOP                        1001
 #define IDC_DEVS                        1002
 #define IDC_COMBO1                      1003
+#define IDC_EMAIL                       1004
+#define IDC_GITHUB                      1005
 #define ID_SELECTSTART                  32771
 #define ID_ENDCATCH                     32772
 
@@ -21,7 +23,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        132
 #define _APS_NEXT_COMMAND_VALUE         32773
-#define _APS_NEXT_CONTROL_VALUE         1004
+#define _APS_NEXT_CONTROL_VALUE         1006
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

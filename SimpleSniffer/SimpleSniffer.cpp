@@ -124,6 +124,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CAboutDlg)
 	enum { IDD = IDD_ABOUTBOX };
+	CString	m_email;
+	CString	m_github;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
@@ -135,7 +137,7 @@ public:
 // Implementation
 protected:
 	//{{AFX_MSG(CAboutDlg)
-		// No message handlers
+	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
@@ -143,6 +145,8 @@ protected:
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
 {
 	//{{AFX_DATA_INIT(CAboutDlg)
+	m_email = _T("");
+	m_github = _T("");
 	//}}AFX_DATA_INIT
 }
 
@@ -150,12 +154,13 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CAboutDlg)
+	DDX_Text(pDX, IDC_EMAIL, m_email);
+	DDX_Text(pDX, IDC_GITHUB, m_github);
 	//}}AFX_DATA_MAP
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	//{{AFX_MSG_MAP(CAboutDlg)
-		// No message handlers
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -169,3 +174,15 @@ void CSimpleSnifferApp::OnAppAbout()
 /////////////////////////////////////////////////////////////////////////////
 // CSimpleSnifferApp message handlers
 
+// 关于对话框的初始化, 显示 github地址 和 我们的邮箱
+BOOL CAboutDlg::OnInitDialog() 
+{
+	CDialog::OnInitDialog();
+
+	this->m_github = "https://github.com/1184893257/SimpleSniffer/tree/master/SimpleSniffer";
+	this->m_email = "1184893257@qq.com";
+	this->UpdateData(false);
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+	              // EXCEPTION: OCX Property Pages should return FALSE
+}
