@@ -91,6 +91,8 @@ class Head_IPv6 : public Head_Super{
 public:
 	int version;
 	int protocol;
+	int extern_len;
+	int sign;						//用于标记是否有扩展首部
 	u_char S_IPv6[16];
 	u_char D_IPv6[16];
 	void analysis(u_char *pkt_data);

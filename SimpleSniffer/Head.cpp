@@ -358,7 +358,15 @@ void Head_IPv6 :: analysis(u_char *pkt_data)
 	memcpy(m_SIPv6,pkt_data+8,16);
 	memcpy(m_DIPv6,pkt_data+24,16);
 	ipv6=1;
+	sign=0;								//用于标记是否有扩展首部 0:没有 1:有
 
+	//处理可选首部
+	if(protocol == 0)					//IPv6中下一个首部是0时有扩展首部
+	{
+		protocol=pkt_data[40] & 0xff;
+		extern_len=pkt_data[41] & 0xff;	//扩展首部长度，不包括开始的8个字符
+		sign=1;
+	}
 	//下一层协议判断
 	remain_len=remain_len-40;
 	if(remain_len == 0)
@@ -369,27 +377,42 @@ void Head_IPv6 :: analysis(u_char *pkt_data)
 	else if(protocol == 6)
 	{
 		next= new Head_TCP();
-		next->analysis(pkt_data+40);
+		if(sign ==1)
+			next->analysis(pkt_data+40+8+extern_len*8);
+		else
+			next->analysis(pkt_data+40);
 	}
 	else if(protocol == 17)
 	{
 		next= new Head_UDP();
-		next->analysis(pkt_data+40);
+		if(sign == 1)
+			next->analysis(pkt_data+40+8+extern_len*8);
+		else
+			next->analysis(pkt_data+40);
 	}
-	else if(protocol == 58 || protocol == 0)
+	else if(protocol == 58 )
 	{
 		next= new Head_ICMP();
-		next->analysis(pkt_data+40);
+		if(sign == 1)
+			next->analysis(pkt_data+40+8+extern_len*8);
+		else
+			next->analysis(pkt_data+40);
 	}
 	else if(protocol == 2)
 	{
 		next=new Head_IGMP();
-		next->analysis(pkt_data+40);
+		if(sign == 1)
+			next->analysis(pkt_data+40+8+extern_len*8);
+		else
+			next->analysis(pkt_data+40);
 	}
 	else if(protocol ==89)
 	{
 		next=new Head_OSPF();
-		next->analysis(pkt_data+40);
+		if(sign == 1)
+			next->analysis(pkt_data+40+8+extern_len*8);
+		else
+			next->analysis(pkt_data+40);
 	}
 	else
 	{
