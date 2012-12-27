@@ -55,7 +55,7 @@ unsigned char m_SIPv6[16];
 unsigned char m_DIPv6[16];
 int ipv6=0;								//如果不是ipv6值为0 如果是值为1
 int packet_kind=0;						//用于记录数据包分析到的最高层类型，0:Ethernet 1:802.3 2:ARP 3:IP 4:ICMP 5:UDP 6:IGMP 7:TCP
-
+int remain_len;							//剩余的数据包长度，用于识别端口号为80的http
 
 /////////////////////////////////////////////////////////////////////////////
 // CSimpleSnifferApp initialization

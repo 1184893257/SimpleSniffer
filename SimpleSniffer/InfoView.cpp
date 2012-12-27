@@ -20,6 +20,7 @@ extern unsigned char m_DIP[4];
 extern unsigned char m_SIPv6[16];
 extern unsigned char m_DIPv6[16];
 extern int ipv6;	
+extern int remain_len;
 
 /////////////////////////////////////////////////////////////////////////////
 // CInfoView
@@ -84,6 +85,7 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	u_char D_mac[6];						//存目的MAC
 	u_char Kind[2];							//存以太帧类型
 	u_char Cntl[1];							//如果是802.3帧，就应该是03
+	remain_len=header->len;					//初始化
 	//存储数据包
 	temp_info.header=header;
 	temp_info.pkt_data=pkt_data;

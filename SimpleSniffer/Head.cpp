@@ -11,6 +11,7 @@ extern unsigned char m_DIP[4];
 extern unsigned char m_SIPv6[16];
 extern unsigned char m_DIPv6[16];
 extern int ipv6;	
+extern int remain_len;
 
 const CString sign_ip="0800";
 const CString sign_arp="0806";
@@ -25,6 +26,7 @@ void Head_Ethernet::analysis(u_char *pkt_data)
 	memcpy(kind,pkt_data+12,2);
 	m_kind.Format("%02X%02X",kind[0],kind[1]);
 	//判断下一层协议
+	remain_len=remain_len-14;
 	if(m_kind.Compare(sign_ip) == 0)
 	{
 		next=new Head_IP();
@@ -69,6 +71,7 @@ void Head_802_3::analysis(u_char *pkt_data)
 	memcpy(kind,pkt_data+20,2);
 	m_kind.Format("%02X%02X",kind[0],kind[1]);
 	//判断下一层协议
+	remain_len=remain_len-22;
 	if(m_kind.Compare(sign_ip) == 0)
 	{
 		next=new Head_IP();
@@ -82,7 +85,7 @@ void Head_802_3::analysis(u_char *pkt_data)
 	else if(m_kind.Compare(sign_ipv6) == 0)
 	{
 		next=new Head_IPv6();
-		next->analysis(pkt_data+14);
+		next->analysis(pkt_data+22);
 	}
 	else
 	{
@@ -154,7 +157,13 @@ void Head_IP::analysis(u_char *pkt_data)
 	ipv6=0;
 
 	//下一层协议判断
-	if(protocol == 1)
+	remain_len=remain_len-len*4;
+	if(remain_len == 0)
+	{
+		next=NULL;
+		packet_kind=3;
+	}
+	else if(protocol == 1)
 	{
 		next=new Head_ICMP();
 		next->analysis(pkt_data+len*4);
@@ -286,16 +295,22 @@ void Head_TCP::analysis(u_char *pkt_data)
 	
 	int sPort=S_Port[0]<<8 | S_Port[1];
 	int dPort=D_Port[0]<<8 | D_Port[1];
-
-	if(sPort == 80 || dPort == 80)
+	len=(pkt_data[12]& 0xf0) >> 4;
+	remain_len=remain_len-len*4;
+	if(remain_len == 0)
+	{
+		next=NULL;
+		packet_kind=7;
+	}
+	else if(sPort == 80 || dPort == 80)
 	{
 		next=new Head_HTTP();
-		next->analysis(pkt_data+20);
+		next->analysis(pkt_data+len*4);
 	}
 	else if(sPort == 21 || dPort == 21)
 	{
 		next=new Head_FTP();
-		next->analysis(pkt_data+20);
+		next->analysis(pkt_data+len*4);
 	}
 	else
 	{
@@ -311,6 +326,7 @@ CString Head_TCP::my_print()
 	CString m_SYN;
 	CString m_ACK;
 	CString m_Size_Window;
+	CString m_len;
 
 	int sPort=0,dPort=0;
 	int mSYN=0,mACK=0;
@@ -320,14 +336,16 @@ CString Head_TCP::my_print()
 	mSYN=SYN[0]<<24 | SYN[1]<<16 | SYN[2]<<8 | SYN[3];
 	mACK=ACK[0]<<24 | ACK[1]<<16 | ACK[2]<<8 | ACK[3];
 	mSize_Window=Size_Window[0]<<8 | Size_Window[1];
-
+	
+	
 	m_SPort.Format("源端口: %d\r\n",sPort);
 	m_DPort.Format("目的端口: %d\r\n",dPort);
 	//m_SYN.Format("SYN: %d\r\n",mSYN);
 	//m_ACK.Format("ACK: %d\r\n",mACK);
+	m_len.Format("长度: %d\r\n",len*4);
 	m_Size_Window.Format("窗口大小: %d\r\n",mSize_Window);
 
-	return "TCP首部\r\n"+m_SPort+m_DPort+m_SYN+m_ACK+m_Size_Window;
+	return "TCP首部\r\n"+m_SPort+m_DPort+m_SYN+m_ACK+m_Size_Window+m_len;
 }
 
 void Head_IPv6 :: analysis(u_char *pkt_data)
@@ -342,7 +360,13 @@ void Head_IPv6 :: analysis(u_char *pkt_data)
 	ipv6=1;
 
 	//下一层协议判断
-	if(protocol == 6)
+	remain_len=remain_len-40;
+	if(remain_len == 0)
+	{
+		next=NULL;
+		packet_kind=8;
+	}
+	else if(protocol == 6)
 	{
 		next= new Head_TCP();
 		next->analysis(pkt_data+40);
@@ -352,7 +376,7 @@ void Head_IPv6 :: analysis(u_char *pkt_data)
 		next= new Head_UDP();
 		next->analysis(pkt_data+40);
 	}
-	else if(protocol == 58)
+	else if(protocol == 58 || protocol == 0)
 	{
 		next= new Head_ICMP();
 		next->analysis(pkt_data+40);

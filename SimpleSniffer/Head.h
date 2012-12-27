@@ -82,6 +82,7 @@ public:
 	u_char SYN[4];
 	u_char ACK[4];
 	u_char Size_Window[2];
+	int len;
 	void analysis(u_char *pkt_data);
 	CString my_print();
 };
