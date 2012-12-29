@@ -18,7 +18,8 @@ class CInfoView : public CListView
 {
 protected:
 	void OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data);// 处理抓到包的事件
-	vector<Info> m_info;
+	vector<Info> m_info;										//用于存储
+	void ipv6_normal_print(unsigned char *ipv6,CString &out);	//用于标准化ipv6的ip地址
 protected:
 	CInfoView();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CInfoView)

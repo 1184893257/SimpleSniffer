@@ -77,9 +77,9 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	CString line_num,m_len,m_smac,m_dmac;	//用于输出格式转化
 	CString m_kind;							//用于记录类型
 	CString m_cntl;							//用于测试是不是802.3帧
-	CString m_packetkind;
-	CString m_s_ip;
-	CString m_d_ip;
+	CString m_packetkind;					//用于显示数组包类型
+	CString m_s_ip;							//用于显示源ip
+	CString m_d_ip;							//用于显示目的ip
 	Info temp_info;							//用于添加所捕获的数据包
 	u_char S_mac[6];						//存源MAC
 	u_char D_mac[6];						//存目的MAC
@@ -130,8 +130,10 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	}
 	else
 	{
-		m_s_ip.Format("%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X",m_SIPv6[0],m_SIPv6[1],m_SIPv6[2],m_SIPv6[3],m_SIPv6[4],m_SIPv6[5],m_SIPv6[6],m_SIPv6[7],m_SIPv6[8],m_SIPv6[9],m_SIPv6[10],m_SIPv6[11],m_SIPv6[12],m_SIPv6[13],m_SIPv6[14],m_SIPv6[15]);
-		m_d_ip.Format("%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X",m_DIPv6[0],m_DIPv6[1],m_DIPv6[2],m_DIPv6[3],m_DIPv6[4],m_DIPv6[5],m_DIPv6[6],m_DIPv6[7],m_DIPv6[8],m_DIPv6[9],m_DIPv6[10],m_DIPv6[11],m_DIPv6[12],m_DIPv6[13],m_DIPv6[14],m_DIPv6[15]);
+		//m_s_ip.Format("%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X",m_SIPv6[0],m_SIPv6[1],m_SIPv6[2],m_SIPv6[3],m_SIPv6[4],m_SIPv6[5],m_SIPv6[6],m_SIPv6[7],m_SIPv6[8],m_SIPv6[9],m_SIPv6[10],m_SIPv6[11],m_SIPv6[12],m_SIPv6[13],m_SIPv6[14],m_SIPv6[15]);
+		//m_d_ip.Format("%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X",m_DIPv6[0],m_DIPv6[1],m_DIPv6[2],m_DIPv6[3],m_DIPv6[4],m_DIPv6[5],m_DIPv6[6],m_DIPv6[7],m_DIPv6[8],m_DIPv6[9],m_DIPv6[10],m_DIPv6[11],m_DIPv6[12],m_DIPv6[13],m_DIPv6[14],m_DIPv6[15]);
+		ipv6_normal_print(m_SIPv6,m_s_ip);
+		ipv6_normal_print(m_DIPv6,m_d_ip);
 	}
 	switch(packet_kind){
 	case 0:m_packetkind="Ethernet";break;
@@ -153,14 +155,14 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	
 	int row = ctr.InsertItem(ctr.GetItemCount(), line_num);   //获得当前所要输出的行号
 	ctr.SetItemText(row, 1, timestr);
-	ctr.SetItemText(row, 2, m_dmac);
-	ctr.SetItemText(row, 3, m_smac);
-	ctr.SetItemText(row, 4, m_len);
-	ctr.SetItemText(row, 5, m_kind);
-	ctr.SetItemText(row, 6, m_cntl);
-	ctr.SetItemText(row, 7, m_s_ip);
-	ctr.SetItemText(row, 8, m_d_ip);
-	ctr.SetItemText(row, 9, m_packetkind);
+	//ctr.SetItemText(row, 2, m_dmac);
+	//ctr.SetItemText(row, 3, m_smac);
+	ctr.SetItemText(row, 2, m_len);
+	//ctr.SetItemText(row, 5, m_kind);
+	//ctr.SetItemText(row, 6, m_cntl);
+	ctr.SetItemText(row, 3, m_s_ip);
+	ctr.SetItemText(row, 4, m_d_ip);
+	ctr.SetItemText(row, 5, m_packetkind);
 	// 抓到包后设置文档已修改, 退出的时候就会提醒用户保存 dump 文件
 	this->GetDocument()->SetModifiedFlag();
 }
@@ -190,17 +192,17 @@ void CInfoView::OnInitialUpdate()
 	m_list.SetTextColor(RGB(10, 10, 80));
 	
 	m_list.InsertColumn( 0, "序号", LVCFMT_CENTER, 50);
-	m_list.InsertColumn( 1, "时间", LVCFMT_CENTER, 80); 
-	m_list.InsertColumn( 2, "源MAC", LVCFMT_CENTER, 130 );
-	m_list.InsertColumn( 3, "目的MAC", LVCFMT_CENTER, 130 );
-	m_list.InsertColumn( 4, "长度", LVCFMT_CENTER,100 );
-	m_list.InsertColumn( 5, "类型",LVCFMT_CENTER,80);
-	m_list.InsertColumn( 6, "802.3",LVCFMT_CENTER,50);
+	m_list.InsertColumn( 1, "时间", LVCFMT_CENTER, 100); 
+	//m_list.InsertColumn( 2, "源MAC", LVCFMT_CENTER, 130 );
+	//m_list.InsertColumn( 3, "目的MAC", LVCFMT_CENTER, 130 );
+	m_list.InsertColumn( 2, "长度", LVCFMT_CENTER,100 );
+	//m_list.InsertColumn( 5, "类型",LVCFMT_CENTER,80);
+	//m_list.InsertColumn( 6, "802.3",LVCFMT_CENTER,50);
 
 	//第二步详细分析显示
-	m_list.InsertColumn( 7,"源IP",LVCFMT_CENTER, 180 );
-	m_list.InsertColumn( 8,"目的IP",LVCFMT_CENTER, 180 );
-	m_list.InsertColumn( 9,"包类型",LVCFMT_CENTER, 130 );
+	m_list.InsertColumn( 3,"源IP",LVCFMT_CENTER, 300 );
+	m_list.InsertColumn( 4,"目的IP",LVCFMT_CENTER, 300 );
+	m_list.InsertColumn( 5,"包类型",LVCFMT_CENTER, 150 );
 }
 
 void CInfoView::OnClick(NMHDR* pNMHDR, LRESULT* pResult) 
@@ -224,4 +226,45 @@ void CInfoView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 		theApp.m_packInfo->ShowPackInfo(m_message);
     }
     *pResult = 0;
+}
+
+void CInfoView::ipv6_normal_print(unsigned char *ipv6,CString &out)
+{
+	CString ip_temp[8];
+	int sign_temp[8];
+	int i,j;
+	int count=0;				//用于标识，只能有一次格式缩进，一般取第一次连续多个零进行缩进
+
+	for(i=0,j=0;i<16;i=i+2,j++)
+	{
+		ip_temp[j].Format("%02X%02X",ipv6[i],ipv6[i+1]);
+		if(ip_temp[j].Compare("0000")==0)
+			sign_temp[j]=0;
+		else
+			sign_temp[j]=1;
+	}
+	for(i=0;i<8;i++)
+	{
+		if(sign_temp[i]==0 && count==0)
+		{
+			for(j=i;j<8;j++)
+			{
+				if(sign_temp[j]!=0)
+					break;
+			}
+			if(j==8)
+				out=out+"::";
+			else
+				out=out+":";
+			i=j-1;
+			count=1;
+		}
+		else
+		{
+			if(i==0)
+				out=ip_temp[i];
+			else
+				out=out+":"+ip_temp[i];
+		}
+	}
 }
