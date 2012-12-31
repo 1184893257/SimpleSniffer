@@ -15,6 +15,7 @@
 #include "resource.h"       // main symbols
 #include "Hex.h"
 #include "PackInfo.h"
+#include "InfoView.h"
 #include "Thread.h"
 #include <pcap.h>
 
@@ -31,6 +32,7 @@ public:
 	// 显示/控制部分
 	CPackInfo *m_packInfo;	// 显示一个数据包的各层协议头的视图(CPackInfo)
 	Hex *m_editor;			// 以十六进制格式显示一个数据包的视图(CHexView)
+	CInfoView *m_infoView;	// 用于清空列表
 	HWND m_control;			// 接收线程退出的消息的句柄(CMainFrame的句柄)
 	HWND m_display;			// 接收抓到包的消息的句柄(CInfoView的句柄)
 

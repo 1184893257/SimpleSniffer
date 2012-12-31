@@ -29,6 +29,7 @@ IMPLEMENT_DYNCREATE(CInfoView, CListView)
 
 CInfoView::CInfoView()
 {
+	theApp.m_infoView = this;
 }
 
 CInfoView::~CInfoView()
@@ -163,8 +164,12 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	ctr.SetItemText(row, 3, m_s_ip);
 	ctr.SetItemText(row, 4, m_d_ip);
 	ctr.SetItemText(row, 5, m_packetkind);
+
 	// 抓到包后设置文档已修改, 退出的时候就会提醒用户保存 dump 文件
-	this->GetDocument()->SetModifiedFlag();
+	if(theApp.m_dumper)
+		this->GetDocument()->SetModifiedFlag();
+	else// 当前是抓pcap文件中的包, 不需要设置已修改标志
+		;
 }
 
 // CInfoView 继承自列表视图(CListView), 这里设置好各个列
@@ -227,6 +232,15 @@ void CInfoView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
     *pResult = 0;
 }
 
+// 清空列表, 开始新的抓包前调用这个这个函数
+void CInfoView::clearList()
+{
+	count = 0;
+	this->m_info.clear();
+	this->GetListCtrl().DeleteAllItems();
+}
+
+// 用于标准化ipv6的ip地址
 void CInfoView::ipv6_normal_print(unsigned char *ipv6,CString &out)
 {
 	CString ip_temp[8];

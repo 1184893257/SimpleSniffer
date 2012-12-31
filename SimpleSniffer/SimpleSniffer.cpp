@@ -109,6 +109,7 @@ BOOL CSimpleSnifferApp::InitInstance()
 void CSimpleSnifferApp::startCatch()
 {
 	this->m_iscatching = TRUE;	// 设置"正在抓包"标志为 TRUE
+	this->m_infoView->clearList();	// 清空之前抓到的包
 	::AfxBeginThread(ThreadProc, new ThreadParam(m_curDev, m_dumper));// 启动抓包线程
 }
 

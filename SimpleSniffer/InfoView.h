@@ -16,6 +16,8 @@ using namespace std;
 
 class CInfoView : public CListView
 {
+public:
+	void clearList();	// 清空列表, 开始新的抓包前调用这个这个函数
 protected:
 	void OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data);// 处理抓到包的事件
 	vector<Info> m_info;										//用于存储
