@@ -15,13 +15,13 @@
 
 # 二、系统结构设计
 
-![功能模块](modules.png)
+![功能模块](modules.png?raw=true)
 
 # 三、接口设计
 
 ## 用户界面
 
-![用户界面](gui.jpg)
+![用户界面](gui.jpg?raw=true)
 
 ## 模块间的接口
 
