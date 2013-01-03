@@ -16,48 +16,48 @@
 
 1. 点击工具栏第一个按钮
 
-	![工具栏](img/toolbar0.jpg?raw=true)
+	![工具栏](https://github.com/1184893257/SimpleSniffer/blob/master/img/toolbar0.jpg?raw=true)
 2. 在弹出的对话框中选择要监听的网卡
 
-	![选择网卡](img/selectdev.jpg?raw=true)
+	![选择网卡](https://github.com/1184893257/SimpleSniffer/blob/master/img/selectdev.jpg?raw=true)
 
 	点击确定，之后开始抓包
 
-	![抓包](img/catching.jpg?raw=true)
+	![抓包](https://github.com/1184893257/SimpleSniffer/blob/master/img/catching.jpg?raw=true)
 
 3. 选中列表中的某行，可显示各层协议PDU的详情、以及整个PDU的16进制形式
 
-	![详细](img/details.jpg?raw=true)
+	![详细](https://github.com/1184893257/SimpleSniffer/blob/master/img/details.jpg?raw=true)
 
 ## 将抓到的所有包保存到一个pcap文件中
 
 1. 点击工具栏第4个按钮终止当前抓包
 
-	![工具栏2](img/toolbar2.jpg?raw=true)
+	![工具栏2](https://github.com/1184893257/SimpleSniffer/blob/master/img/toolbar2.jpg?raw=true)
 
 	工具栏又恢复为这个样子：
 
-	![工具栏](img/toolbar0.jpg?raw=true)
+	![工具栏](https://github.com/1184893257/SimpleSniffer/blob/master/img/toolbar0.jpg?raw=true)
 
 2. 点击保存按钮，弹出保存对话框，输入文件名，保存
 
-	![保存](img/save.jpg?raw=true)
+	![保存](https://github.com/1184893257/SimpleSniffer/blob/master/img/save.jpg?raw=true)
 
 ## 打开pcap文件，重现抓到的数据包
 
 1. 点击打开按钮，选中一个pcap文件
 
-	![打开](img/open.jpg?raw=true)
+	![打开](https://github.com/1184893257/SimpleSniffer/blob/master/img/open.jpg?raw=true)
 
 2. 保存在pcap文件中的所有包将重现出来：
 
-	![重现](img/reshow.jpg?raw=true)
+	![重现](https://github.com/1184893257/SimpleSniffer/blob/master/img/reshow.jpg?raw=true)
 
 ---
 
 # 源码框架
 
-![modules](docs/general/modules.png?raw=true)
+![modules](https://github.com/1184893257/SimpleSniffer/blob/master/docs/general/modules.png?raw=true)
 
 更多介绍：
 
