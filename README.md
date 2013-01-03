@@ -53,6 +53,10 @@
 
 	![重现](https://github.com/1184893257/SimpleSniffer/blob/master/img/reshow.jpg?raw=true)
 
+	test.pcap 还可以在 Wireshark 中打开：
+
+	![对比](https://github.com/1184893257/SimpleSniffer/blob/master/img/wireshark.jpg?raw=true)
+
 ---
 
 # 源码框架
