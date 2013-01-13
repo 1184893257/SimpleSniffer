@@ -90,9 +90,7 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	//存储数据包
 	temp_info.header=header;
 	temp_info.pkt_data=pkt_data;
-	//temp_info.information=NULL;
-	//temp_info.len=0;
-	//m_info.push_back(temp_info);
+	
 
 	//处理header获得时间，长度信息
 	ltime = localtime(&header->ts.tv_sec);
@@ -131,8 +129,6 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	}
 	else
 	{
-		//m_s_ip.Format("%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X",m_SIPv6[0],m_SIPv6[1],m_SIPv6[2],m_SIPv6[3],m_SIPv6[4],m_SIPv6[5],m_SIPv6[6],m_SIPv6[7],m_SIPv6[8],m_SIPv6[9],m_SIPv6[10],m_SIPv6[11],m_SIPv6[12],m_SIPv6[13],m_SIPv6[14],m_SIPv6[15]);
-		//m_d_ip.Format("%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X:%02X%02X",m_DIPv6[0],m_DIPv6[1],m_DIPv6[2],m_DIPv6[3],m_DIPv6[4],m_DIPv6[5],m_DIPv6[6],m_DIPv6[7],m_DIPv6[8],m_DIPv6[9],m_DIPv6[10],m_DIPv6[11],m_DIPv6[12],m_DIPv6[13],m_DIPv6[14],m_DIPv6[15]);
 		ipv6_normal_print(m_SIPv6,m_s_ip);
 		ipv6_normal_print(m_DIPv6,m_d_ip);
 	}
@@ -156,11 +152,7 @@ void CInfoView::OnTCatch(struct pcap_pkthdr *header, u_char *pkt_data)
 	
 	int row = ctr.InsertItem(ctr.GetItemCount(), line_num);   //获得当前所要输出的行号
 	ctr.SetItemText(row, 1, timestr);
-	//ctr.SetItemText(row, 2, m_dmac);
-	//ctr.SetItemText(row, 3, m_smac);
 	ctr.SetItemText(row, 2, m_len);
-	//ctr.SetItemText(row, 5, m_kind);
-	//ctr.SetItemText(row, 6, m_cntl);
 	ctr.SetItemText(row, 3, m_s_ip);
 	ctr.SetItemText(row, 4, m_d_ip);
 	ctr.SetItemText(row, 5, m_packetkind);
@@ -199,12 +191,8 @@ void CInfoView::OnInitialUpdate()
 	
 	m_list.InsertColumn( 0, "序号", LVCFMT_CENTER, 50);
 	m_list.InsertColumn( 1, "时间", LVCFMT_CENTER, 100); 
-	//m_list.InsertColumn( 2, "源MAC", LVCFMT_CENTER, 130 );
-	//m_list.InsertColumn( 3, "目的MAC", LVCFMT_CENTER, 130 );
 	m_list.InsertColumn( 2, "长度", LVCFMT_CENTER,100 );
-	//m_list.InsertColumn( 5, "类型",LVCFMT_CENTER,80);
-	//m_list.InsertColumn( 6, "802.3",LVCFMT_CENTER,50);
-
+	
 	//第二步详细分析显示
 	m_list.InsertColumn( 3,"源IP",LVCFMT_CENTER, 300 );
 	m_list.InsertColumn( 4,"目的IP",LVCFMT_CENTER, 300 );
